@@ -1,0 +1,19 @@
+dev:
+  summary: development commands
+  exec: robo --config {{ .robo.path }}/manage/dev.yml
+
+prod:
+  summary: production commands
+  exec: robo --config {{ .robo.path }}/manage/prod.yml
+
+setup:
+  summary: Execute setup steps
+  command: |
+    echo Performing setup steps...
+    # script/tools.sh
+
+# launch:
+#   summary: Launch services
+#   command: |
+#     echo Launching services...
+#     services/tasks/script/launch.sh

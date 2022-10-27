@@ -1,0 +1,7 @@
+test:
+  summary: command check
+  command: echo "test - dev"
+
+api:
+  summary: start API gateway
+  command: docker-compose -f api/docker-compose.yml up -d api
