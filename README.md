@@ -1,3 +1,3 @@
-# Real Estate Management System
+# REMS
 
 Pre-alpha, might burn your house down.
