@@ -56,6 +56,38 @@
           "method": "GET"
         }
       ]
+    },
+    {
+      "@comment": "Tasks: Create",
+      "endpoint": "/api/v1/tasks/{id}",
+      "method": "POST",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/api/v1/{id}",
+          "host": [
+            "host.docker.internal:4002"
+          ],
+          "encoding": "json",
+          "method": "POST"
+        }
+      ]
+    },
+    {
+      "@comment": "Tasks: Update",
+      "endpoint": "/api/v1/tasks/{id}",
+      "method": "PUT",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/api/v1/{id}",
+          "host": [
+            "host.docker.internal:4002"
+          ],
+          "encoding": "json",
+          "method": "PUT"
+        }
+      ]
     }
   ]
 }

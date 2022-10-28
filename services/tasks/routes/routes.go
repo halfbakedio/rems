@@ -3,7 +3,7 @@ package routes
 import (
 	"github.com/gofiber/fiber/v2"
 
-	// "github.com/halfbakedio/rems/services/tasks/database"
+	"github.com/halfbakedio/rems/services/tasks/database"
 	"github.com/halfbakedio/rems/services/tasks/models"
 )
 
@@ -18,18 +18,13 @@ func Create(c *fiber.Ctx) error {
 		return c.Status(400).JSON(err.Error())
 	}
 
-	// database.DB.Db.Create(&task)
+	database.Connection.DB.Create(&task)
 
 	return c.Status(200).JSON(Response{Data: task})
 }
 
 func Read(c *fiber.Ctx) error {
-	tasks := []models.Task{
-		models.Task{
-			Title: "derp",
-			Body:  "dorp",
-		},
-	}
+	tasks := []models.Task{}
 	id, err := c.ParamsInt("id", 0)
 
 	if err != nil {
@@ -37,49 +32,54 @@ func Read(c *fiber.Ctx) error {
 	}
 
 	if id == 0 {
-		// database.DB.Db.Find(&tasks)
+		database.Connection.DB.Find(&tasks)
+
 		return c.Status(200).JSON(Response{Data: tasks})
 	} else {
-		// database.DB.Db.Where("id = ?", id).Find(&task)
+		database.Connection.DB.Where("id = ?", id).Find(&tasks)
+
 		return c.Status(200).JSON(Response{Data: tasks[0]})
 	}
 }
 
 func Update(c *fiber.Ctx) error {
-	// task := []models.Task{}
-	task := []models.Task{
-		models.Task{
-			Title: "derp",
-			Body:  "dorp",
-		},
-	}
-	// updateTask := new(models.Task)
-	// id, err := c.ParamsInt("id")
-	//
-	// if err != nil {
-	// 	return c.Status(400).JSON(err.Error())
-	// }
-	//
-	// if errParser := c.BodyParser(updateTask); err != nil {
-	// 	return c.Status(400).JSON(errParser.Error())
-	// }
-
-	// database.DB.Db.Model(&task).Where("id = ?", id).Update("title", updateTask.Title)
-
-	return c.Status(200).JSON(Response{Data: task})
-}
-
-func Delete(c *fiber.Ctx) error {
-	// task := []models.Task{}
+	task := []models.Task{}
+	updateTask := new(models.Task)
 	id, err := c.ParamsInt("id")
 
 	if err != nil {
 		return c.Status(400).JSON(err.Error())
 	}
 
-	// database.DB.Db.Where("id = ?", id).Delete(&task)
+	if errParser := c.BodyParser(updateTask); err != nil {
+		return c.Status(400).JSON(errParser.Error())
+	}
 
-	response := struct{ id int }{id: id}
+	updateFields := models.Task{
+		Title: updateTask.Title,
+		Body:  updateTask.Body,
+	}
 
-	return c.Status(200).JSON(response)
+	database.Connection.DB.Model(
+		&task,
+	).Where(
+		"id = ?", id,
+	).Updates(
+		updateFields,
+	)
+
+	return c.Status(200).JSON("updated")
+}
+
+func Delete(c *fiber.Ctx) error {
+	task := []models.Task{}
+	id, err := c.ParamsInt("id")
+
+	if err != nil {
+		return c.Status(400).JSON(err.Error())
+	}
+
+	database.Connection.DB.Where("id = ?", id).Delete(&task)
+
+	return c.Status(200).JSON("deleted")
 }

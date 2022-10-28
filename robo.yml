@@ -5,9 +5,3 @@ dev:
 prod:
   summary: production commands
   exec: robo --config {{ .robo.path }}/manage/prod.yml
-
-# launch:
-#   summary: Launch services
-#   command: |
-#     echo Launching services...
-#     services/tasks/script/launch.sh

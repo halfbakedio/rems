@@ -10,9 +10,7 @@ setup:
 
 up:
   summary: start development services
-  command: |
-    docker compose up -d
-    overmind start
+  command: script/dev/up.sh
 
 down:
   summary: stop development services

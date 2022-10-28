@@ -4,22 +4,15 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"os"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 
-	// "github.com/halfbakedio/rems/services/tasks/database"
+	"github.com/halfbakedio/rems/services/tasks/database"
 	"github.com/halfbakedio/rems/services/tasks/routes"
+	"github.com/halfbakedio/rems/services/tasks/utils"
 )
-
-func getEnv(key, fallback string) string {
-	if value, ok := os.LookupEnv(key); ok {
-		return value
-	}
-	return fallback
-}
 
 func apiRoutes(app *fiber.App) {
 	api := app.Group("/api")
@@ -32,7 +25,7 @@ func apiRoutes(app *fiber.App) {
 }
 
 func main() {
-	// database.ConnectDb()
+	database.ConnectDB()
 	app := fiber.New()
 
 	apiRoutes(app)
@@ -44,7 +37,7 @@ func main() {
 		return c.SendStatus(http.StatusNotFound)
 	})
 
-	port := getEnv("TASKS_PORT", "4002")
+	port := utils.GetEnv("TASKS_PORT", "4002")
 	address := fmt.Sprintf(":%s", port)
 
 	log.Fatal(app.Listen(address))
