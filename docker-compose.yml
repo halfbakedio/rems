@@ -1,0 +1,29 @@
+---
+version: "3.7"
+
+services:
+  api:
+    image: devopsfaith/krakend:watch
+    volumes:
+      - ./api/config/krakend:/etc/krakend
+    ports:
+      - "1234:1234"
+      - "8080:8080"
+      - "8090:8090"
+    command: ["run", "-d", "-c", "/etc/krakend/krakend.json"]
+
+  db:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_MULTIPLE_DATABASES=tasks_dev,tasks_test
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgres/data
+      - ./script/dev/pg-init:/docker-entrypoint-initdb.d
+
+volumes:
+  pg_data:

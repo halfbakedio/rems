@@ -1,7 +1,3 @@
-test:
-  summary: command check
-  command: echo "test - prod"
-
 api:
   summary: deploy API gateway
   command: cd api && fly deploy

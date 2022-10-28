@@ -1,7 +1,21 @@
-test:
-  summary: command check
-  command: echo "test - dev"
+env:
+  summary: setup development environment
+  command: |
+    yes | cp .env.development .env
+    direnv allow
 
-api:
-  summary: start API gateway
-  command: docker-compose -f api/docker-compose.yml up -d api
+setup:
+  summary: run setup tasks
+  command: script/dev/setup.sh
+
+up:
+  summary: start development services
+  command: |
+    docker compose up -d
+    overmind start
+
+down:
+  summary: stop development services
+  command: |
+    docker compose down
+    overmind quit

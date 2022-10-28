@@ -2,6 +2,7 @@
   "$schema": "https://www.krakend.io/schema/v3.json",
   "version": 3,
   "name": "REMS - API Gateway",
+  "port": 8080,
   "extra_config": {
     "security/cors": {
       "allow_origins": [
@@ -25,14 +26,33 @@
   "output_encoding": "json",
   "endpoints": [
     {
-      "endpoint": "/v1/tasks",
+      "@comment": "Tasks: Read all",
+      "endpoint": "/api/v1/tasks",
       "method": "GET",
       "output_encoding": "json",
       "backend": [
         {
-          "url_pattern": "/",
+          "url_pattern": "/api/v1",
+          "host": [
+            "host.docker.internal:4002"
+          ],
           "encoding": "json",
-          "sd": "static",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "@comment": "Tasks: Read",
+      "endpoint": "/api/v1/tasks/{id}",
+      "method": "GET",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/api/v1/{id}",
+          "host": [
+            "host.docker.internal:4002"
+          ],
+          "encoding": "json",
           "method": "GET"
         }
       ]
