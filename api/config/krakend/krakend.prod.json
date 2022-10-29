@@ -7,8 +7,7 @@
     "security/cors": {
       "allow_origins": [
         "*",
-        "https://app.derptown.com",
-        "http://app.dev.derptown.com"
+        "https://app.derptown.com"
       ],
       "expose_headers": [
         "Content-Length"
@@ -17,26 +16,26 @@
       "allow_methods": [
         "GET",
         "HEAD",
-        "POST"
+        "POST",
+        "PUT",
+        "DELETE"
       ]
     }
   },
   "timeout": "3000ms",
   "cache_ttl": "300s",
   "output_encoding": "json",
+  "host": [
+    "top2.nearest.of.rems-tasks.internal:4002"
+  ],
   "endpoints": [
     {
       "@comment": "Tasks: Read all",
       "endpoint": "/api/v1/tasks",
       "method": "GET",
-      "output_encoding": "json",
       "backend": [
         {
           "url_pattern": "/api/v1",
-          "host": [
-            "host.docker.internal:4002"
-          ],
-          "encoding": "json",
           "method": "GET"
         }
       ]
@@ -45,14 +44,9 @@
       "@comment": "Tasks: Read",
       "endpoint": "/api/v1/tasks/{id}",
       "method": "GET",
-      "output_encoding": "json",
       "backend": [
         {
           "url_pattern": "/api/v1/{id}",
-          "host": [
-            "host.docker.internal:4002"
-          ],
-          "encoding": "json",
           "method": "GET"
         }
       ]
@@ -61,14 +55,9 @@
       "@comment": "Tasks: Create",
       "endpoint": "/api/v1/tasks/{id}",
       "method": "POST",
-      "output_encoding": "json",
       "backend": [
         {
           "url_pattern": "/api/v1/{id}",
-          "host": [
-            "host.docker.internal:4002"
-          ],
-          "encoding": "json",
           "method": "POST"
         }
       ]
@@ -77,15 +66,21 @@
       "@comment": "Tasks: Update",
       "endpoint": "/api/v1/tasks/{id}",
       "method": "PUT",
-      "output_encoding": "json",
       "backend": [
         {
           "url_pattern": "/api/v1/{id}",
-          "host": [
-            "host.docker.internal:4002"
-          ],
-          "encoding": "json",
           "method": "PUT"
+        }
+      ]
+    },
+    {
+      "@comment": "Tasks: Delete",
+      "endpoint": "/api/v1/tasks/{id}",
+      "method": "DELETE",
+      "backend": [
+        {
+          "url_pattern": "/api/v1/{id}",
+          "method": "DELETE"
         }
       ]
     }

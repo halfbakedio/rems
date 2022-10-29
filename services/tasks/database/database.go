@@ -20,11 +20,11 @@ type DBInstance struct {
 var Connection DBInstance
 
 func ConnectDB() {
-	host := utils.GetEnv("DB_HOST", "localhost")
-	user := utils.GetEnv("DB_USER", "postgres")
-	password := utils.GetEnv("DB_PASSWORD", "postgres")
-	database := utils.GetEnv("DB_DATABASE", "tasks_dev")
-	port := utils.GetEnv("DB_PORT", "5432")
+	host := utils.GetEnv("TASKS_DB_HOST", "localhost")
+	user := utils.GetEnv("TASKS_DB_USER", "postgres")
+	password := utils.GetEnv("TASKS_DB_PASSWORD", "postgres")
+	database := utils.GetEnv("TASKS_DB_DATABASE", "tasks_dev")
+	port := utils.GetEnv("TASKS_DB_PORT", "5432")
 	timezone := utils.GetEnv("TIMEZONE", "UTC")
 
 	dsn := fmt.Sprintf(

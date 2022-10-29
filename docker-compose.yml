@@ -10,7 +10,7 @@ services:
       - "1234:1234"
       - "8080:8080"
       - "8090:8090"
-    command: ["run", "-d", "-c", "/etc/krakend/krakend.json"]
+    command: ["run", "-d", "-c", "/etc/krakend/krakend.dev.json"]
 
   db:
     image: postgres:15-alpine

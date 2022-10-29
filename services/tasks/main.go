@@ -25,8 +25,14 @@ func apiRoutes(app *fiber.App) {
 }
 
 func main() {
+	config := fiber.Config{}
+
+	if utils.GetEnv("TASKS_USE_IPV6", "false") == "true" {
+		config.Network = fiber.NetworkTCP6
+	}
+
 	database.ConnectDB()
-	app := fiber.New()
+	app := fiber.New(config)
 
 	apiRoutes(app)
 
@@ -37,8 +43,9 @@ func main() {
 		return c.SendStatus(http.StatusNotFound)
 	})
 
+	bind := utils.GetEnv("TASKS_BIND", "")
 	port := utils.GetEnv("TASKS_PORT", "4002")
-	address := fmt.Sprintf(":%s", port)
+	address := fmt.Sprintf("%s:%s", bind, port)
 
 	log.Fatal(app.Listen(address))
 }

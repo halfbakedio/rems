@@ -1,0 +1,108 @@
+{
+  "$schema": "https://www.krakend.io/schema/v3.json",
+  "version": 3,
+  "name": "REMS - API Gateway (development)",
+  "port": 8080,
+  "extra_config": {
+    "security/cors": {
+      "allow_origins": [
+        "*",
+        "http://app.dev.derptown.com"
+      ],
+      "expose_headers": [
+        "Content-Length"
+      ],
+      "max_age": "12h",
+      "allow_methods": [
+        "GET",
+        "HEAD",
+        "POST"
+      ]
+    }
+  },
+  "timeout": "3000ms",
+  "cache_ttl": "300s",
+  "output_encoding": "json",
+  "endpoints": [
+    {
+      "@comment": "Tasks: Read all",
+      "endpoint": "/api/v1/tasks",
+      "method": "GET",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/api/v1",
+          "host": [
+            "host.docker.internal:4002"
+          ],
+          "encoding": "json",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "@comment": "Tasks: Read",
+      "endpoint": "/api/v1/tasks/{id}",
+      "method": "GET",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/api/v1/{id}",
+          "host": [
+            "host.docker.internal:4002"
+          ],
+          "encoding": "json",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "@comment": "Tasks: Create",
+      "endpoint": "/api/v1/tasks/{id}",
+      "method": "POST",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/api/v1/{id}",
+          "host": [
+            "host.docker.internal:4002"
+          ],
+          "encoding": "json",
+          "method": "POST"
+        }
+      ]
+    },
+    {
+      "@comment": "Tasks: Update",
+      "endpoint": "/api/v1/tasks/{id}",
+      "method": "PUT",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/api/v1/{id}",
+          "host": [
+            "host.docker.internal:4002"
+          ],
+          "encoding": "json",
+          "method": "PUT"
+        }
+      ]
+    },
+    {
+      "@comment": "Tasks: Delete",
+      "endpoint": "/api/v1/tasks/{id}",
+      "method": "DELETE",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/api/v1/{id}",
+          "host": [
+            "host.docker.internal:4002"
+          ],
+          "encoding": "json",
+          "method": "DELETE"
+        }
+      ]
+    }
+  ]
+}
