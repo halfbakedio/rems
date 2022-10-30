@@ -1,3 +1,7 @@
+prepare:
+  summary: prepare the application environment
+  command: script/prod/prepare.sh
+
 deploy:
   summary: deploy application
   command: script/prod/deploy.sh

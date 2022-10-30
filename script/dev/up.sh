@@ -3,7 +3,7 @@
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 PROJECT_DIR="${SCRIPT_DIR}/../.."
 COMPOSE_FILES="-f ${PROJECT_DIR}/docker-compose.yml"
-CONTAINERS="api db"
+CONTAINERS="proxy api db"
 DOCKER_HOST_IP=""
 
 DOCKER_HOST_IP=${DOCKER_HOST_IP} \
