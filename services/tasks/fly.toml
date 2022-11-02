@@ -10,11 +10,11 @@ processes = []
   buildpacks = ["gcr.io/paketo-buildpacks/go"]
 
 [env]
+  DB_USER = "rems_tasks"
+  DB_HOST = "top2.nearest.of.rems-db.internal"
   TASKS_BIND = "[::]"
   TASKS_PORT = "4002"
-  TASKS_DB_USER = "rems_tasks"
-  TASKS_DB_HOST = "top2.nearest.of.rems-db.internal"
-  TASKS_DB_DATABASE = "rems_tasks"
+  TASKS_DATABASE = "rems_tasks"
   TASKS_USE_IPV6 = "true"
 
 [experimental]

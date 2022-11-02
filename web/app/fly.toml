@@ -1,22 +1,27 @@
-# fly.toml file generated for rems-proxy on 2022-10-29T10:22:02-07:00
+# fly.toml file generated for rems-app on 2022-10-29T21:41:20-07:00
 
-app = "rems-proxy"
+app = "rems-app"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
 
+[build]
+  [build.args]
+    NEXT_PUBLIC_EXAMPLE = "Value goes here"
+
 [env]
+  PORT = "8080"
 
 [experimental]
   allowed_public_ports = []
   auto_rollback = true
 
 [[services]]
+  http_checks = []
   internal_port = 8080
   processes = ["app"]
   protocol = "tcp"
   script_checks = []
-
   [services.concurrency]
     hard_limit = 25
     soft_limit = 20
@@ -36,13 +41,3 @@ processes = []
     interval = "15s"
     restart_limit = 0
     timeout = "2s"
-
-  [[services.http_checks]]
-    interval = 60000
-    method = "get"
-    path = "/healthz"
-    protocol = "http"
-    timeout = 2000
-
-    [services.http_checks.headers]
-      Host = "health.check"

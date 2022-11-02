@@ -4,10 +4,10 @@
   "name": "REMS - API Gateway",
   "port": 8080,
   "extra_config": {
+    "auto_options": true,
     "security/cors": {
       "allow_origins": [
-        "*",
-        "https://app.derptown.com"
+        "*"
       ],
       "expose_headers": [
         "Content-Length"
@@ -53,11 +53,11 @@
     },
     {
       "@comment": "Tasks: Create",
-      "endpoint": "/api/v1/tasks/{id}",
+      "endpoint": "/api/v1/tasks",
       "method": "POST",
       "backend": [
         {
-          "url_pattern": "/api/v1/{id}",
+          "url_pattern": "/api/v1",
           "method": "POST"
         }
       ]
