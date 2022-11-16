@@ -33,5 +33,14 @@ services:
       - pg_data:/var/lib/postgres/data
       - ./script/dev/pg-init:/docker-entrypoint-initdb.d
 
+  jwt_revoke:
+    build:
+      context: services/jwt-revoker
+    ports:
+      - "9000:8080"
+    depends_on:
+      - api
+    restart: always
+
 volumes:
   pg_data:
