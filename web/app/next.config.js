@@ -12,6 +12,7 @@ const nextConfig = {
     config.resolve.alias = {
       ...config.resolve.alias,
       "@": path.resolve(__dirname, "./"),
+      "@components": path.resolve(__dirname, "./components"),
       "@styles": path.resolve(__dirname, "./styles"),
     };
 
