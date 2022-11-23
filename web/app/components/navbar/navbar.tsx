@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   createContext,
   useCallback,
@@ -28,6 +29,7 @@ type NavbarNavProps = {
 
 type NavbarItemProps = {
   children?: React.ReactNode;
+  className?: string;
 };
 
 type NavbarLinkProps = {
@@ -38,14 +40,20 @@ type NavbarLinkProps = {
 };
 
 const style = {
-  navbar: `fixed px-4 py-2 shadow top-0 w-full lg:flex lg:flex-row lg:items-center lg:justify-start lg:relative`,
-  brand: `cursor-pointer font-bold inline-block mr-4 py-1.5 text-2xl whitespace-nowrap hover:text-gray-200`,
+  navbar: `fixed px-4 py-2 shadow top-0 left-0 w-full
+    lg:flex lg:flex-row lg:items-center lg:justify-start lg:relative`,
+  brand: `cursor-pointer font-bold inline-block py-1.5 text-2xl whitespace-nowrap
+    hover:text-gray-200`,
   toggler: `block float-right text-4xl lg:hidden focus:outline-none focus:shadow`,
   item: `whitespace-pre cursor-pointer px-4 py-3 hover:text-gray-200`,
   collapse: {
-    default: `border-t border-gray-200 fixed left-0 mt-2 shadow py-2 text-center lg:border-none lg:flex lg:flex-grow lg:items-center lg:mt-0 lg:py-0 lg:relative lg:shadow-none`,
-    open: `h-auto visible transition-all duration-500 ease-out w-full opacity-100 lg:transition-none`,
-    close: `h-auto invisible w-0 transition-all duration-300 ease-in lg:opacity-100 lg:transition-none lg:visible`,
+    default: `border-t border-gray-200 fixed left-0 mt-2 shadow py-2 text-center
+      lg:border-none lg:flex lg:flex-grow lg:items-center lg:mt-0 lg:py-0
+      lg:relative lg:shadow-none`,
+    open: `h-auto visible transition-all duration-500 ease-out w-full opacity-100
+      lg:transition-none`,
+    close: `h-auto invisible w-0 transition-all duration-300 ease-in
+      lg:opacity-100 lg:transition-none lg:visible`,
   },
   nav: {
     start: `block mb-0 mr-auto pl-0 lg:flex lg:mb-0 lg:pl-0`,
@@ -57,7 +65,7 @@ const style = {
 interface ContextProps {
   open: boolean;
   toggle: () => void;
-};
+}
 
 const Context = createContext({} as ContextProps);
 
@@ -140,8 +148,8 @@ const NavbarNav = ({ children, orientation }: NavbarNavProps) => (
   <ul className={style.nav[orientation]}>{children}</ul>
 );
 
-const NavbarItem = ({ children }: NavbarItemProps) => (
-  <li className={style.item}>{children}</li>
+const NavbarItem = ({ children, className }: NavbarItemProps) => (
+  <li className={`${className} ${style.item}`}>{children}</li>
 );
 
 /**
@@ -149,9 +157,9 @@ const NavbarItem = ({ children }: NavbarItemProps) => (
  * Create-React-App, Next.js or Gatsby
  */
 const NavbarLink = ({ children, href, active, activeClass }: NavbarLinkProps) => (
-  <a href={href} className={active ? activeClass : ""}>
+  <Link href={href} className={active ? activeClass : ""}>
     {children}
-  </a>
+  </Link>
 );
 
 export {

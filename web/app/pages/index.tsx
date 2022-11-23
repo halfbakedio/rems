@@ -1,16 +1,20 @@
-import Head from "next/head";
+import type { ReactElement } from "react";
 
-import { Layout } from "@components/layout";
+import { Layout } from "@/components/layout";
+import { Body } from "@components/body";
 
-export default function Home() {
+import type { NextPageWithLayout } from "./_app";
+
+const Page: NextPageWithLayout = () => {
+  return <Body />;
+};
+
+Page.getLayout = function getLayout(page: ReactElement) {
   return (
-    <>
-      <Head>
-        <title>REMS</title>
-        <meta name="description" content="Real Estate Management System" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Layout />
-    </>
+    <Layout>
+      {page}
+    </Layout>
   );
-}
+};
+
+export default Page;

@@ -20,18 +20,18 @@ const Card = ({ children }: Props) => {
       {children}
     </div>
   );
-}
+};
 
 const CardBody = ({ children }: Props) => {
   return <div className={style.cardBody}>{children}</div>;
-}
+};
 
 const CardTitle = ({ children }: Props) => {
   return <div className={style.cardTitle}>{children}</div>;
-}
+};
 
 const CardText = ({ children }: Props) => {
   return <div className={style.cardText}>{children}</div>;
-}
+};
 
 export { Card, CardBody, CardTitle, CardText };
