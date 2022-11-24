@@ -6,6 +6,8 @@
 
 services/tasks/tasks
 
+docs/diagrams/**/*.svg
+
 node_modules/
 tmp/
 vendor/

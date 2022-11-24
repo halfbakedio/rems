@@ -1,0 +1,62 @@
+agents: {
+  shape: sql_table
+
+  id: int {constraint: primary_key}
+  name: string
+
+  created_at: timestamp with time zone
+  updated_at: timestamp with time zone
+}
+
+properties: {
+  shape: sql_table
+
+  id: int {constraint: primary_key}
+  address: string
+  image_uri: string
+
+  created_at: timestamp with time zone
+  updated_at: timestamp with time zone
+}
+
+listings: {
+  shape: sql_table
+
+  id: int {constraint: primary_key}
+  agent_id: int {constraint: foreign_key}
+  property_id: int {constraint: foreign_key}
+
+  created_at: timestamp with time zone
+  updated_at: timestamp with time zone
+}
+
+open_houses: {
+  shape: sql_table
+
+  id: int {constraint: primary_key}
+  agent_id: int {constraint: foreign_key}
+  listing_id: int {constraint: foreign_key}
+
+  created_at: timestamp with time zone
+  updated_at: timestamp with time zone
+}
+
+contacts: {
+  shape: sql_table
+
+  id: int {constraint: primary_key}
+  first_name: string
+  last_name: string
+  email_address: string
+  phone_number: string
+
+  created_at: timestamp with time zone
+  updated_at: timestamp with time zone
+}
+
+leads: {}
+
+listings.agent_id -> agents.id
+listings.property_id -> properties.id
+open_houses.agent_id -> agents.id
+open_houses.listing_id -> listings.id

@@ -1,19 +1,22 @@
 import type { ReactElement } from "react";
 
-import { Layout } from "@components/layout";
-import { Body } from "@components/body";
+import { AdminLayout } from "@/components/layout";
 
-import type { NextPageWithLayout } from "./_app";
+import type { NextPageWithLayout } from "../_app";
 
 const Page: NextPageWithLayout = () => {
-  return <Body />;
+  return (
+    <>
+      <h1>hi</h1>
+    </>
+  );
 };
 
 Page.getLayout = function getLayout(page: ReactElement) {
   return (
-    <Layout>
+    <AdminLayout>
       {page}
-    </Layout>
+    </AdminLayout>
   );
 };
 
