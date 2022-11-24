@@ -1,0 +1,33 @@
+require:
+  - rubocop-rails
+
+AllCops:
+  DisplayCopNames: true
+  NewCops: enable
+
+Lint/MissingCopEnableDirective:
+  Enabled: false
+
+Rails:
+  Enabled: true
+
+Rails/FilePath:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/TrailingCommaInArguments:
+  Enabled: false
+
+Style/TrailingCommaInHashLiteral:
+  Enabled: false
+
+Style/TrailingCommaInArrayLiteral:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Metrics/MethodLength:
+  Enabled: false
