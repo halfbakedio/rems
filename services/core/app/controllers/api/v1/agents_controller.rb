@@ -1,6 +1,8 @@
 module Api
   module V1
     class AgentsController < ApplicationController
+      before_action :authenticate_user!
+
       # test with:
       # curl -H "accept: application/vnd.agents+json" \
       #   http://localhost:3000/api/v1/agents.json

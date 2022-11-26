@@ -8,10 +8,10 @@ Rails.application.routes.draw do
       # end
 
       devise_for :users,
-        controllers: { sessions: :sessions },
-        path_names: { sign_in: :login }
+                 controllers: { sessions: :sessions },
+                 path_names: { sign_in: :login }
 
-      resource :user, only: [:show, :update]
+      resource :user, only: %i[show update]
     end
   end
 
