@@ -5,6 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable, :trackable
 
+  validates :username, uniqueness: { case_sensitive: true },
+                       format: { with: /\A[a-zA-Z0-9]+\z/ },
+                       presence: true,
+                       allow_blank: false
+
   def generate_jwt
     JWT.encode(
       {
