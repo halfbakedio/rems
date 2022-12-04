@@ -10,10 +10,11 @@
   "settings": {
     "import/resolver": {
       "alias": {
-        "extensions": [".js", ".jsx", "ts", "tsx"],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
         "map": [
           ["@", "."],
           ["@components", "./src/components"],
+          ["@pages", "./src/pages"],
           ["@services", "./src/services"],
           ["@styles", "./src/styles"]
         ]
@@ -41,15 +42,19 @@
         ],
         "pathGroups": [
           {
-            "pattern": "@components",
+            "pattern": "@components/*",
             "group": "internal"
           },
           {
-            "pattern": "@services",
+            "pattern": "@pages/*",
             "group": "internal"
           },
           {
-            "pattern": "@styles/**",
+            "pattern": "@services/*",
+            "group": "internal"
+          },
+          {
+            "pattern": "@styles/*",
             "group": "internal",
             "position": "after"
           }

@@ -1,4 +1,3 @@
-import { Sidenav, SidenavItem } from "@components/sidenav";
 import {
   faAddressBook,
   faHouseLaptop,
@@ -8,6 +7,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
+import { Sidenav, SidenavItem } from "@components/sidenav";
 
 
 const Sidebar = () => {

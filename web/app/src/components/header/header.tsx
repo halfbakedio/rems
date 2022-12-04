@@ -1,3 +1,5 @@
+import { faTents } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   Navbar,
   NavbarBrand,
@@ -7,8 +9,6 @@ import {
   NavbarNav,
   NavbarToggler,
 } from "@components/navbar";
-import { faTents } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 export const Header = () => {
