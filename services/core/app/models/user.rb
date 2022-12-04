@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable, :trackable
 
+  belongs_to :account
+
   validates :username, uniqueness: { case_sensitive: true },
                        format: { with: /\A[a-zA-Z0-9]+\z/ },
                        presence: true,

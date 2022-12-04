@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_04_063318) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_04_065501) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -28,6 +28,35 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_04_063318) do
     t.boolean "lead"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "listings", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "property_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_listings_on_account_id"
+    t.index ["property_id"], name: "index_listings_on_property_id"
+  end
+
+  create_table "open_houses", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "listing_id", null: false
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_open_houses_on_account_id"
+    t.index ["listing_id"], name: "index_open_houses_on_listing_id"
+  end
+
+  create_table "properties", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.string "address"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_properties_on_account_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -49,10 +78,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_04_063318) do
     t.datetime "updated_at", null: false
     t.string "username"
     t.string "image"
+    t.bigint "account_id", null: false
+    t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "listings", "accounts"
+  add_foreign_key "listings", "properties"
+  add_foreign_key "open_houses", "accounts"
+  add_foreign_key "open_houses", "listings"
+  add_foreign_key "properties", "accounts"
+  add_foreign_key "users", "accounts"
 end
