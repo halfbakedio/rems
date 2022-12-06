@@ -17,13 +17,20 @@ end
 
 def find_or_create_property(account:, address:, image:)
   property = Property.find_by_address(address)
-  property = Property.create(address: address, image: image) if property.nil?
+  property = Property.create(
+    account: account,
+    address: address,
+    image: image,
+  ) if property.nil?
   property
 end
 
 def first_or_create_listing(account:, property:)
   listing = property.listings.first
-  listing = Listing.create(account: account, property: property) if listing.nil?
+  listing = Listing.create(
+    account: account,
+    property: property,
+  ) if listing.nil?
   listing
 end
 
