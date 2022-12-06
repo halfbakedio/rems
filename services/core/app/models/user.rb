@@ -7,6 +7,8 @@ class User < ApplicationRecord
 
   belongs_to :account
 
+  has_many :listings
+
   validates :username, uniqueness: { case_sensitive: true },
                        format: { with: /\A[a-zA-Z0-9]+\z/ },
                        presence: true,

@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resources :agents
     resources :contacts
     # resources :listings
-    # resources :open_houses
+    resources :open_houses, only: [:show]
     # resources :properties
   end
 

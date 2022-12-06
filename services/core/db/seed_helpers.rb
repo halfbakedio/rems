@@ -25,11 +25,12 @@ def find_or_create_property(account:, address:, image:)
   property
 end
 
-def first_or_create_listing(account:, property:)
+def first_or_create_listing(account:, property:, agent:)
   listing = property.listings.first
   listing = Listing.create(
     account: account,
     property: property,
+    agent: agent,
   ) if listing.nil?
   listing
 end

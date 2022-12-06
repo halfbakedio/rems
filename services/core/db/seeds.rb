@@ -21,7 +21,11 @@ if Rails.env.development?
       address: "123 Fake St.",
       image: "123-fake-st.png",
     )
-    listing = first_or_create_listing(account: account, property: property)
+    listing = first_or_create_listing(
+      account: account,
+      property: property,
+      agent: admin,
+    )
     first_or_create_open_house(
       account: account,
       listing: listing,
