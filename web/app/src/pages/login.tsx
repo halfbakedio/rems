@@ -2,8 +2,11 @@ import { useFormik } from "formik";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
+import { ErrorText, Field, Label, TextInput } from "tailwind-react-ui";
 
 import AuthService from "@services/auth";
+
+import { Card } from "@components/card";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -18,6 +21,10 @@ const validationSchema = Yup.object().shape({
 const Login = () => {
   const navigate = useNavigate();
 
+  // TODO: redirect to dashboard if already logged in
+  // TODO: display loading state
+  // TODO: display error message in notification or toast when login fails
+
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -27,7 +34,7 @@ const Login = () => {
 
     AuthService.login(values.email, values.password).then(
       () => {
-        navigate("/profile");
+        navigate("/");
         window.location.reload();
       },
       (error: any) => {
@@ -63,12 +70,14 @@ const Login = () => {
   });
 
   return (
-    <>
+  <div className="w-full md:w-4/12">
+    <Card>
       <form noValidate onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <input
+        <Field hasError>
+          <Label>Email</Label>
+          <TextInput
             name="email"
+            placeholder="user@domain.com"
             type="email"
             className={
               "form-control" +
@@ -77,10 +86,26 @@ const Login = () => {
             onChange={handleChange}
             value={values.email}
           />
-          <div className="invalid-feedback">
+          <ErrorText>
             {errors.email && touched.email ? errors.email : null}
-          </div>
-        </div>
+          </ErrorText>
+        </Field>
+        {/* <div className="form-group"> */}
+        {/*   <label htmlFor="email">Email</label> */}
+        {/*   <input */}
+        {/*     name="email" */}
+        {/*     type="email" */}
+        {/*     className={ */}
+        {/*       "form-control" + */}
+        {/*       (errors.email && touched.email ? " is-invalid" : "") */}
+        {/*     } */}
+        {/*     onChange={handleChange} */}
+        {/*     value={values.email} */}
+        {/*   /> */}
+        {/*   <div className="invalid-feedback"> */}
+        {/*     {errors.email && touched.email ? errors.email : null} */}
+        {/*   </div> */}
+        {/* </div> */}
 
         <div className="form-group">
           <label htmlFor="password">Password</label>
@@ -112,7 +137,8 @@ const Login = () => {
           </button>
         </div>
       </form>
-    </>
+    </Card>
+  </div>
   );
 };
 

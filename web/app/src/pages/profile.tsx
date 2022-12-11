@@ -2,7 +2,6 @@ import AuthService from "@services/auth";
 
 const Profile = () => {
   const currentUser = AuthService.getCurrentUser();
-  // debugger; // eslint-disable-line no-debugger
 
   return (
     <div className="container">

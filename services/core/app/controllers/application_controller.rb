@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  set_current_tenant_by_subdomain_or_domain(:account, :subdomain, :domain)
+
   include ActionController::RequestForgeryProtection
 
   protect_from_forgery with: :null_session
