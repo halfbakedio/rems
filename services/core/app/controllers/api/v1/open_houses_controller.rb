@@ -5,6 +5,8 @@ module Api
 
       def show
         @open_house = OpenHouse.find(params[:id])
+
+        render formats: :json
       end
     end
   end

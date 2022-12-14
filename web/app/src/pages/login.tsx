@@ -1,12 +1,19 @@
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Input,
+  Typography,
+} from "@material-tailwind/react";
 import { useFormik } from "formik";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import { ErrorText, Field, Label, TextInput } from "tailwind-react-ui";
 
 import AuthService from "@services/auth";
 
-import { Card } from "@components/card";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -70,75 +77,62 @@ const Login = () => {
   });
 
   return (
-  <div className="w-full md:w-4/12">
-    <Card>
-      <form noValidate onSubmit={handleSubmit}>
-        <Field hasError>
-          <Label>Email</Label>
-          <TextInput
-            name="email"
-            placeholder="user@domain.com"
-            type="email"
-            className={
-              "form-control" +
-              (errors.email && touched.email ? " is-invalid" : "")
-            }
-            onChange={handleChange}
-            value={values.email}
-          />
-          <ErrorText>
-            {errors.email && touched.email ? errors.email : null}
-          </ErrorText>
-        </Field>
-        {/* <div className="form-group"> */}
-        {/*   <label htmlFor="email">Email</label> */}
-        {/*   <input */}
-        {/*     name="email" */}
-        {/*     type="email" */}
-        {/*     className={ */}
-        {/*       "form-control" + */}
-        {/*       (errors.email && touched.email ? " is-invalid" : "") */}
-        {/*     } */}
-        {/*     onChange={handleChange} */}
-        {/*     value={values.email} */}
-        {/*   /> */}
-        {/*   <div className="invalid-feedback"> */}
-        {/*     {errors.email && touched.email ? errors.email : null} */}
-        {/*   </div> */}
-        {/* </div> */}
+    <div className="py-20">
+      <Card className="w-96 mx-auto shadow-2xl">
+        <CardHeader
+          variant="gradient"
+          color="cyan"
+          className="mb-4 grid h-28 place-items-center"
+        >
+          <Typography variant="h3" color="white">
+            Sign In
+          </Typography>
+        </CardHeader>
+        <form noValidate onSubmit={handleSubmit}>
+          <CardBody className="flex flex-col gap-4">
+            <Input
+              label={errors.email && touched.email ? errors.email : "Email"}
+              size="lg"
+              type="email"
+              name="email"
+              error={errors.email != undefined && touched.email != undefined}
+              onChange={handleChange}
+              value={values.email}
+            />
 
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input
-            name="password"
-            type="password"
-            className={
-              "form-control" +
-              (errors.password && touched.password ? " is-invalid" : "")
-            }
-            onChange={handleChange}
-            value={values.password}
-          />
-          <div className="invalid-feedback">
-            {errors.password && touched.password ? errors.password : null}
-          </div>
-        </div>
-
-        <div className="form-group">
-          <button type="submit" className="btn btn-primary">
-            Submit
-          </button>
-          <button
-            type="button"
-            className="btn btn-warning float-right"
-            onClick={handleReset}
-          >
-            Reset
-          </button>
-        </div>
-      </form>
-    </Card>
-  </div>
+            <Input
+              label={errors.password && touched.password ? errors.password : "Password"}
+              size="lg"
+              type="password"
+              name="password"
+              error={errors.password != undefined && touched.password != undefined}
+              onChange={handleChange}
+              value={values.password}
+            />
+          </CardBody>
+          <CardFooter className="pt-0 flex flex-col gap-4">
+            <Button variant="gradient" color="blue" type="submit" fullWidth>
+              Sign In
+            </Button>
+            <Button variant="gradient" color="red" onClick={handleReset} fullWidth>
+              Reset
+            </Button>
+            <Typography variant="small" className="mt-6 flex justify-center">
+              Don&apos;t have an account?
+              <Typography
+                as="a"
+                href="register"
+                variant="small"
+                color="blue"
+                className="ml-1 font-bold"
+              >
+                Sign up
+              </Typography>
+            </Typography>
+          </CardFooter>
+        </form>
+      </Card>
+    </div>
   );
 };
 

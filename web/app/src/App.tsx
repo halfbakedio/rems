@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 
 import Dashboard from "@pages/dashboard";
 import Login from "@pages/login";
+import OpenHouse from "@pages/open-house";
 import Profile from "@pages/profile";
 import Register from "@pages/register";
 
@@ -18,10 +19,11 @@ const App = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/login" element={<Login/>} />
-        <Route path="/register" element={<Register/>} />
-        <Route path="/profile" element={<Profile/>} />
+        <Route index element={<Dashboard />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/open-houses/:id" element={<OpenHouse />} />
       </Routes>
 
       <AuthVerify logOut={logOut} />
