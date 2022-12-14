@@ -1,0 +1,5 @@
+#!/bin/bash -e
+
+# convenience script for restarting rails service
+
+overmind restart core --socket ../../.overmind.sock

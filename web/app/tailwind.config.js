@@ -1,64 +1,68 @@
-/** @type {import("tailwindcss").Config} */
+/** @type {import('tailwindcss').Config} */
 
-const plugins = require("tailwind-react-ui/plugins");
+const withMT = require("@material-tailwind/react/utils/withMT");
 
-module.exports = {
+module.exports = withMT({
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,jsx,ts,tsx,html}",
+    "./public/index.html",
   ],
   theme: {
     extend: {
-      animation: {
-        // if you are using the animate variant of the modal
-        modal: "modal 0.5s",
-
-        // if you are using drawer variant right
-        "drawer-right": "drawer-right 0.3s",
-
-        // if you are using drawer variant left
-        "drawer-left": "drawer-left 0.3s",
-
-        // if you are using drawer variant top
-        "drawer-top": "drawer-top 0.3s",
-
-        // if you are using drawer variant bottom
-        "drawer-bottom": "drawer-bottom 0.3s",
+      colors: {
+        red: {
+          50: "#fce7e9",
+          100: "#f8c4c8",
+          200: "#f39ca3",
+          300: "#ee747e",
+          400: "#ea5762",
+          500: "#e63946",
+          600: "#e3333f",
+          700: "#df2c37",
+          800: "#db242f",
+          900: "#d51720",
+        },
+        cyan: {
+          50: "#a8dadc",
+          100: "#a8dadc",
+          200: "#a8dadc",
+          300: "#a8dadc",
+          400: "#a8dadc",
+          500: "#a8dadc",
+          600: "#a8dadc",
+          700: "#a8dadc",
+          800: "#a8dadc",
+          900: "#a8dadc",
+        },
+        blue: {
+          50: "#457b9d",
+          100: "#457b9d",
+          200: "#457b9d",
+          300: "#457b9d",
+          400: "#457b9d",
+          500: "#457b9d",
+          600: "#457b9d",
+          700: "#457b9d",
+          800: "#457b9d",
+          900: "#457b9d",
+        },
+        indigo: {
+          50: "#1d3557",
+          100: "#1d3557",
+          200: "#1d3557",
+          300: "#1d3557",
+          400: "#1d3557",
+          500: "#1d3557",
+          600: "#1d3557",
+          700: "#1d3557",
+          800: "#1d3557",
+          900: "#1d3557",
+        },
       },
-      keyframes: {
-        // if you are using the animate variant of the modal
-        modal: {
-          "0%, 100%": { opacity: 0 },
-          "100%": { opacity: 1 },
-        },
-
-        // if you are using drawer variant right
-        "drawer-right": {
-          "0%, 100%": { right: "-500px" },
-          "100%": { right: "0" },
-        },
-
-        // if you are using drawer variant left
-        "drawer-left": {
-          "0%, 100%": { left: "-500px" },
-          "100%": { left: "0" },
-        },
-
-        // if you are using drawer variant top
-        "drawer-top": {
-          "0%, 100%": { top: "-500px" },
-          "100%": { top: "0" },
-        },
-
-        // if you are using drawer variant bottom
-        "drawer-bottom": {
-          "0%, 100%": { bottom: "-500px" },
-          "100%": { bottom: "0" },
-        },
-      },
+      // colors: {
+      //   "lightBlue": "#f1faee",
+      // },
     },
   },
-  plugins: [
-    ...Object.keys(plugins).map(name => plugins[name]()),
-  ],
-}
+  plugins: [],
+});

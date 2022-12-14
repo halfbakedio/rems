@@ -1,8 +1,8 @@
 {
   "parser": "@typescript-eslint/parser",
   "extends": [
-    "next/core-web-vitals",
     "eslint:recommended",
+    "plugin:import/recommended",
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
     "plugin:@typescript-eslint/recommended"
@@ -10,14 +10,21 @@
   "settings": {
     "import/resolver": {
       "alias": {
-        "extensions": [".js", ".jsx", "ts", "tsx"],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
         "map": [
           ["@", "."],
-          ["@styles", "./styles"]
+          ["@components", "./src/components"],
+          ["@pages", "./src/pages"],
+          ["@services", "./src/services"],
+          ["@styles", "./src/styles"]
         ]
       }
     }
   },
+  "ignorePatterns": [
+    "src/serviceWorker.ts",
+    "src/setupTests.ts"
+  ],
   "rules": {
     "array-bracket-spacing": "error",
     "arrow-parens": ["error", "always"],
@@ -35,15 +42,19 @@
         ],
         "pathGroups": [
           {
-            "pattern": "components",
+            "pattern": "@components/*",
             "group": "internal"
           },
           {
-            "pattern": "pages",
+            "pattern": "@pages/*",
             "group": "internal"
           },
           {
-            "pattern": "@styles/**",
+            "pattern": "@services/*",
+            "group": "internal"
+          },
+          {
+            "pattern": "@styles/*",
             "group": "internal",
             "position": "after"
           }
