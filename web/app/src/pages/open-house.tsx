@@ -1,78 +1,52 @@
 import { Button } from "@material-tailwind/react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import AuthService from "@services/auth";
-import PropertyService from "@services/property";
-
-interface IErrorMessage {
-  message: string;
-}
-
-interface IProperty {
-  address: string;
-}
-
-interface IAgent {
-  name: string;
-}
-
-interface IOpenHouse {
-  id: number;
-  startAt: string;
-  endAt: string;
-  property: IProperty;
-  agent: IAgent;
-}
+import { useAppDispatch, useTypedSelector } from "@store/index"; // FIXME
+import {
+  fetchOpenHouseById,
+  selectOpenHouses,
+  selectStatus,
+} from "~features/open-house/";
 
 const OpenHouse = () => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const [errorMessage, setErrorMessage] = useState<IErrorMessage | undefined>(undefined);
-  const [isLoading, setIsLoading] = useState(false);
-  const [openHouse, setOpenHouse] = useState<IOpenHouse | undefined>(undefined);
+  const status = useTypedSelector(selectStatus);
+  const openHouses = useTypedSelector(selectOpenHouses);
 
   const { id } = useParams();
 
-  useEffect(() => {
-    const fetch = async () => {
-      try {
-        setIsLoading(true);
-        const result = await PropertyService.getOpenHouse(id);
-        setOpenHouse(result.data.openHouse);
-        setErrorMessage(undefined);
-        setIsLoading(false);
-      } catch (error) {
-        setErrorMessage({ message: "derped out" });
-        setIsLoading(false);
-      }
-    };
+  const parseId = (id: string | undefined) => id === undefined ? 0 : parseInt(id);
 
+  useEffect(() => {
     const user = AuthService.getCurrentUser();
 
-    if (user) {
-      fetch();
-    } else {
+    if (!user) {
       navigate("/login");
     }
+
+    dispatch(fetchOpenHouseById(parseId(id)));
   }, []);
 
   return (
     <>
-      {openHouse && (
+      {openHouses[0] && (
         <div className="flex flex-col h-full py-24">
           <div className="flex flex-none justify-center text-5xl">
             Welcome to:
           </div>
           <div className="flex flex-none justify-center text-5xl">
-            {openHouse.property.address}
+            {openHouses[0].property.address}
           </div>
           <div className="flex flex-none justify-center text-5xl mt-32">
             <Button variant="gradient">Sign in</Button>
           </div>
           <div className="flex flex-auto"></div>
           <div className="flex flex-none justify-center text-5xl">
-            Hosted by: {openHouse.agent.name}
+            Hosted by: {openHouses[0].agent.name}
           </div>
         </div>
       )}
