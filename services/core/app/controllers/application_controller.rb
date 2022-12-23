@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   set_current_tenant_by_subdomain_or_domain(:account, :subdomain, :domain)
 
   include ActionController::RequestForgeryProtection
+  include Pagy::Backend
 
   protect_from_forgery with: :null_session
 

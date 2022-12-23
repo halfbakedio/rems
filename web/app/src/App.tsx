@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 import { Route, Routes } from "react-router-dom";
 
+import OpenHouses from "@pages/admin/open-houses";
 import Dashboard from "@pages/dashboard";
 import Login from "@pages/login";
 import OpenHouse from "@pages/open-house";
@@ -24,6 +25,9 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/open-houses/:id" element={<OpenHouse />} />
+        <Route path="/admin">
+          <Route path="open-houses" element={<OpenHouses />} />
+        </Route>
       </Routes>
 
       <AuthVerify logOut={logOut} />

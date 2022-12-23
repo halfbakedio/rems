@@ -11,10 +11,14 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
+    "@fortawesome/free-regular-svg-icons": "^6.2.1",
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@material-tailwind/react": "^1.2.4",
+    "@reduxjs/toolkit": "^1.9.1",
     "axios": "^1.2.0",
+    "classnames": "^2.3.2",
+    "nanoid": "^4.0.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-router-dom": "^6.4.3"
@@ -36,6 +40,8 @@
     "eslint-import-resolver-typescript": "^3.5.2",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-react": "^7.31.11",
+    "flowbite": "^1.5.5",
+    "flowbite-react": "^0.3.7",
     "formik": "^2.2.9",
     "postcss": "^8.4.20",
     "postcss-cli": "^9.1.0",
