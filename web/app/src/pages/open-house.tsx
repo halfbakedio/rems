@@ -1,4 +1,5 @@
 import { Button } from "@material-tailwind/react";
+import { Spinner } from "flowbite-react";
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -6,9 +7,10 @@ import AuthService from "@services/auth";
 import { useAppDispatch, useTypedSelector } from "@store/index"; // FIXME
 import {
   fetchOpenHouseById,
+  selectOpenHouse,
   selectOpenHouses,
   selectStatus,
-} from "~features/open-house/";
+} from "~features/open-house";
 
 const OpenHouse = () => {
   const dispatch = useAppDispatch();
@@ -18,35 +20,46 @@ const OpenHouse = () => {
   const openHouses = useTypedSelector(selectOpenHouses);
 
   const { id } = useParams();
+  const parsedId = id === undefined ? 0 : parseInt(id);
 
-  const parseId = (id: string | undefined) => id === undefined ? 0 : parseInt(id);
+  const loading = () => status === "loading" ? true : false;
+  const openHouse = () => selectOpenHouse(openHouses, parsedId);
 
   useEffect(() => {
     const user = AuthService.getCurrentUser();
 
     if (!user) {
       navigate("/login");
+      window.location.reload();
     }
 
-    dispatch(fetchOpenHouseById(parseId(id)));
+    dispatch(fetchOpenHouseById(parsedId));
   }, []);
 
   return (
     <>
-      {openHouses[0] && (
+      {loading() && (
+        <div className="text-center py-24">
+          <Spinner
+            aria-label="loading open house data"
+            size="xl"
+          />
+        </div>
+      )}
+      {!loading() && openHouses && (
         <div className="flex flex-col h-full py-24">
           <div className="flex flex-none justify-center text-5xl">
             Welcome to:
           </div>
           <div className="flex flex-none justify-center text-5xl">
-            {openHouses[0].property.address}
+            {openHouse()?.property.address}
           </div>
           <div className="flex flex-none justify-center text-5xl mt-32">
             <Button variant="gradient">Sign in</Button>
           </div>
           <div className="flex flex-auto"></div>
           <div className="flex flex-none justify-center text-5xl">
-            Hosted by: {openHouses[0].agent.name}
+            Hosted by: {openHouse()?.agent.name}
           </div>
         </div>
       )}

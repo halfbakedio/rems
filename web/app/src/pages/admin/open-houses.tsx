@@ -1,35 +1,13 @@
 import { nanoid } from "nanoid";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import { Drawer } from "@components/drawer";
 import { AdminLayout } from "@components/layout";
 import { Table, TableBody, TableHeader, TableRow } from "@components/table";
 
-import AuthService from "@services/auth";
 import PropertyService from "@services/property";
 
-// TODO: move these types into their own location
-
-interface IErrorMessage {
-  message: string;
-}
-
-interface IProperty {
-  address: string;
-}
-
-interface IAgent {
-  name: string;
-}
-
-interface IOpenHouse {
-  id: number;
-  startAt: string;
-  endAt: string;
-  property: IProperty;
-  agent: IAgent;
-}
+import { ErrorMessage, OpenHouse } from "~types/index";
 
 const SpeedDial = () => {
   const menuClassNames = "hidden flex flex-col items-center mb-4 space-y-2";
@@ -97,11 +75,9 @@ const SpeedDial = () => {
 };
 
 const OpenHouses = () => {
-  const navigate = useNavigate();
-
-  const [errorMessage, setErrorMessage] = useState<IErrorMessage | undefined>(undefined);
+  const [errorMessage, setErrorMessage] = useState<ErrorMessage | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(false);
-  const [openHouses, setOpenHouses] = useState<Array<IOpenHouse | undefined>>([]);
+  const [openHouses, setOpenHouses] = useState<Array<OpenHouse | undefined>>([]);
 
   useEffect(() => {
     const fetch = async () => {
@@ -117,13 +93,7 @@ const OpenHouses = () => {
       }
     };
 
-    const user = AuthService.getCurrentUser();
-
-    if (user) {
-      fetch();
-    } else {
-      navigate("/login");
-    }
+    fetch();
   }, []);
 
   return (

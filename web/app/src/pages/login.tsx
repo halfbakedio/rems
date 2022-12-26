@@ -12,8 +12,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 
-import AuthService from "@services/auth";
-
+import { useAuth } from "~hooks/useAuth";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -27,6 +26,7 @@ const validationSchema = Yup.object().shape({
 
 const Login = () => {
   const navigate = useNavigate();
+  const { authenticated, login } = useAuth();
 
   // TODO: redirect to dashboard if already logged in
   // TODO: display loading state
@@ -35,27 +35,26 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
-  const handleLogin = (values: { email: string, password: string }) => {
+  const handleLogin = async (values: { email: string, password: string }) => {
     setMessage("");
     setLoading(true);
 
-    AuthService.login(values.email, values.password).then(
-      () => {
-        navigate("/");
-        window.location.reload();
-      },
-      (error: any) => {
-        const resMessage =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
+    if (authenticated) {
+      navigate("/");
+    }
 
-        setLoading(false);
-        setMessage(resMessage);
-      },
-    );
+    try {
+      login(values.email, values.password);
+      navigate("/");
+
+      setLoading(false);
+    } catch (error: any) {
+      const resMessage =
+        error.response?.data?.message || error.message || error.toString();
+
+      setLoading(false);
+      setMessage(resMessage);
+    }
   };
 
   const {

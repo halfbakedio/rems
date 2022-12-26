@@ -75,6 +75,9 @@ export const slice = createSlice({
 });
 
 export const selectOpenHouses = (state: RootState) => state.openHouses.entities;
+export const selectOpenHouse = (entities: OpenHouse[], id: number) => {
+  return entities.find((entity) => entity.id == id);
+};
 export const selectStatus = (state: RootState) => state.openHouses.status;
 
 export const {

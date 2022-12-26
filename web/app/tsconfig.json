@@ -28,6 +28,7 @@
       "@store/*": ["src/store/*"],
       "@styles/*": ["src/styles/*"],
       "~features/*": ["src/features/*"],
+      "~hooks/*": ["src/common/hooks/*"],
       "~types/*": ["src/types/*"],
     }
   },

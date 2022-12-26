@@ -1,5 +1,6 @@
 import {
   fetchOpenHouseById,
+  selectOpenHouse,
   selectOpenHouses,
   selectStatus,
   slice,
@@ -23,5 +24,6 @@ export {
   updateOpenHouse,
   // selectors
   selectStatus,
+  selectOpenHouse,
   selectOpenHouses,
 };

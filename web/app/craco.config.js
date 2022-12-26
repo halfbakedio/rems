@@ -10,6 +10,7 @@ module.exports = {
       "@store": path.resolve(__dirname, "src/store"),
       "@styles": path.resolve(__dirname, "src/styles"),
       "~features": path.resolve(__dirname, "src/features"),
+      "~hooks": path.resolve(__dirname, "src/common/hooks"),
       "~types": path.resolve(__dirname, "src/types"),
     },
     extensions: [".js", ".jsx", ".ts", ".tsx"],

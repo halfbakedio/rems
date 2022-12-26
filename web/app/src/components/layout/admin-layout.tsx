@@ -5,9 +5,10 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { MenuButton } from "@components/button";
+import { useAuth } from "~hooks/useAuth";
 
 type Props = {
   children?: React.ReactNode,
@@ -15,6 +16,8 @@ type Props = {
 
 const AdminLayout = ({ children }: Props) => {
   const [openNav, setOpenNav] = useState(false);
+  const navigate = useNavigate();
+  const { logout } = useAuth();
  
   useEffect(() => {
     window.addEventListener(
@@ -22,6 +25,11 @@ const AdminLayout = ({ children }: Props) => {
       () => window.innerWidth >= 960 && setOpenNav(false),
     );
   }, []);
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
 
   const navLink = (label: string, path: string) => (
     <Typography
@@ -59,14 +67,14 @@ const AdminLayout = ({ children }: Props) => {
             <span>REMS Admin</span>
           </Typography>
           <div className="hidden lg:block">{navList}</div>
-          <Button variant="gradient" size="sm" className="hidden lg:inline-block">
+          <Button variant="gradient" size="sm" className="hidden lg:inline-block" onClick={handleLogout}>
             <span>Log out</span>
           </Button>
           <MenuButton isOpen={openNav} handleToggle={() => setOpenNav(!openNav)} />
         </div>
         <MobileNav open={openNav}>
           {navList}
-          <Button variant="gradient" size="sm" fullWidth className="mb-2">
+          <Button variant="gradient" size="sm" fullWidth className="mb-2" onClick={handleLogout}>
             <span>Log out</span>
           </Button>
         </MobileNav>
