@@ -14,8 +14,8 @@ export interface IUserContext {
 export interface IAuthContext {
   user: IUserContext,
   authenticated: boolean,
-  login: (email: string, password: string) => void,
-  logout: () => void,
+  login: (email: string, password: string) => Promise<void>,
+  logout: () => Promise<void>,
 }
 
 type Props = {
@@ -26,14 +26,13 @@ const AuthContext = createContext<IAuthContext | undefined>(undefined);
 
 export const AuthProvider = ({ children }: Props) => {
   const [authenticated, setAuthenticated] = useState(false);
-  const [user, setUser] = useLocalStorage("user", undefined);
+  const [user, setUser] = useLocalStorage("user", {});
 
   const handleLogin = async (email: string, password: string) => {
     try {
-      const result = AuthService.login(email, password);
+      const result = await AuthService.login(email, password);
       setAuthenticated(true);
-      setUser(result);
-      return result;
+      setUser(result.user);
     } catch (error) {
       setUser(undefined);
       setAuthenticated(false);

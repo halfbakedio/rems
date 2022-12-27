@@ -3,41 +3,37 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, IconButton } from "@material-tailwind/react";
 
 type Props = {
-  dataId: string,
   title: string,
+  onCancel: () => void,
+  onSubmit: () => void,
   subtitle?: string,
+  visible?: boolean,
 };
 
 const style = {
-  container: "fixed z-40 h-screen p-4 overflow-y-auto bg-white w-[480px] dark:bg-gray-800 shadow-lg",
+  container: "fixed z-40 right-0 top-0 h-screen p-4 overflow-y-auto bg-white w-[480px] dark:bg-gray-800 shadow-lg",
   title: "flex inline-flex items-center text-base font-semibold text-gray-500 dark:text-gray-400",
   subtitle: "mb-6 text-sm text-gray-500 dark:text-gray-400",
 };
 
-const Drawer = ({ dataId, title, subtitle }: Props) => {
+const Drawer = ({ title, subtitle, onCancel, onSubmit, visible }: Props) => {
   return (
     <div
-      id={dataId}
-      className={style.container}
+      className={`${visible ? "" : "hidden"} ${style.container}`}
       tabIndex={-1}
-      aria-labelledby={`${dataId}-label`}
     >
       <div className="flex flex-col h-full">
         <div className="grow h-full">
           <div className="flex flex-row justify-between">
-            <h5
-              id={`${dataId}-label`}
-              className={style.title}
-            >
+            <h5 className={style.title}>
               {title}
             </h5>
             <IconButton
               className="flex-grow"
               variant="text"
-              data-drawer-dismiss={dataId}
-              aria-controls={dataId}
+              onClick={onCancel}
             >
-              <FontAwesomeIcon icon={faClose} />
+              <FontAwesomeIcon icon={faClose} size="xl" />
             </IconButton>
           </div>
           { subtitle && (
@@ -47,8 +43,8 @@ const Drawer = ({ dataId, title, subtitle }: Props) => {
           )}
         </div>
         <div className="grid grid-cols-2 gap-4">
-          <Button variant="outlined">Cancel</Button>
-          <Button variant="gradient">Submit</Button>
+          <Button variant="outlined" onClick={onCancel}>Cancel</Button>
+          <Button variant="gradient" onClick={onSubmit}>Submit</Button>
         </div>
       </div>
     </div>

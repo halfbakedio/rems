@@ -8,8 +8,8 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { useFormik } from "formik";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 
 import { useAuth } from "~hooks/useAuth";
@@ -26,27 +26,28 @@ const validationSchema = Yup.object().shape({
 
 const Login = () => {
   const navigate = useNavigate();
-  const { authenticated, login } = useAuth();
+  const { state } = useLocation();
+  const { user, login } = useAuth();
 
-  // TODO: redirect to dashboard if already logged in
   // TODO: display loading state
   // TODO: display error message in notification or toast when login fails
 
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
+  useEffect(() => {
+    if (user?.token) {
+      navigate("/", { replace: true });
+    }
+  }, []);
+
   const handleLogin = async (values: { email: string, password: string }) => {
     setMessage("");
     setLoading(true);
 
-    if (authenticated) {
-      navigate("/");
-    }
-
     try {
-      login(values.email, values.password);
-      navigate("/");
-
+      await login(values.email, values.password);
+      navigate(state?.path || "/");
       setLoading(false);
     } catch (error: any) {
       const resMessage =
@@ -70,8 +71,8 @@ const Login = () => {
       password: "",
     },
     validationSchema,
-    // validateOnChange: false,
-    // validateOnBlur: false,
+    validateOnChange: true,
+    validateOnBlur: true,
     onSubmit: handleLogin,
   });
 

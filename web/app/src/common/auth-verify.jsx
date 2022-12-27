@@ -14,7 +14,7 @@ const AuthVerify = (props) => {
 
   useEffect(() => {
     const data = localStorage.getItem("user");
-    const user = (data == "undefined") ? undefined : JSON.parse(data);
+    const user = (data == "undefined" || data == {}) ? undefined : JSON.parse(data);
 
     if (user && user.token) {
       const decodedJwt = parseJwt(user.token);
