@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import { SpeedDial } from "@components/button";
 import { Drawer } from "@components/drawer";
 import { AdminLayout } from "@components/layout";
-import { Table, TableBody, TableHeader, TableRow } from "@components/table";
+import { Loader } from "@components/loader";
+import { Table } from "@components/table";
 
 import PropertyService from "@services/property";
 
@@ -38,17 +39,25 @@ const OpenHouses = () => {
 
   return (
     <AdminLayout>
-      <div className="overflow-x-auto relative shadow-md sm:rounded-lg m-8">
-        <Table>
-          <TableHeader columns={["ID", "Start at", "End at"]} />
-          <TableBody>
-            {openHouses.map((openHouse) => (
-              openHouse && <TableRow key={nanoid()} values={[openHouse.id, openHouse.startAt, openHouse.endAt]} />
-            ))}
-          </TableBody>
-        </Table>
-        {/* TODO: add pagination */}
-      </div>
+      {isLoading && (<Loader />)}
+      {!isLoading && (
+        <div className="overflow-x-auto relative shadow-md sm:rounded-lg m-8">
+          <Table>
+            <Table.Header columns={["ID", "Start at", "End at"]} />
+            <Table.Body>
+              {openHouses.map((openHouse) => (
+                openHouse && (
+                  <Table.Row
+                    key={nanoid()}
+                    values={[openHouse.id, openHouse.startAt, openHouse.endAt]}
+                  />
+                )
+              ))}
+            </Table.Body>
+          </Table>
+          {/* TODO: add pagination */}
+        </div>
+      )}
       <SpeedDial dataId="open-houses-menu">
         <SpeedDial.AddButton
           dataId="open-houses-menu-add"

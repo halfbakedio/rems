@@ -1,8 +1,8 @@
 import { Button } from "@material-tailwind/react";
-import { Spinner } from "flowbite-react";
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
+import { Loader } from "@components/loader";
 import AuthService from "@services/auth";
 import { useAppDispatch, useTypedSelector } from "@store/index"; // FIXME
 import {
@@ -40,10 +40,7 @@ const OpenHouse = () => {
     <>
       {loading() && (
         <div className="text-center py-24">
-          <Spinner
-            aria-label="loading open house data"
-            size="xl"
-          />
+          <Loader />
         </div>
       )}
       {!loading() && openHouses && (

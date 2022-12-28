@@ -83,4 +83,8 @@ const TableRow = ({ className, values }: TableRowProps ) => {
   );
 };
 
-export { Table, TableBody, TableHeader, TableRow };
+Table.Body = TableBody;
+Table.Header = TableHeader;
+Table.Row = TableRow;
+
+export default Table;
