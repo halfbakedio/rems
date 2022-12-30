@@ -35,7 +35,13 @@ const logout = () => {
 };
 
 const getCurrentUser = () => {
-  return JSON.parse(localStorage.getItem("user"));
+  const data = localStorage.getItem("user");
+
+  if (!data || data == "undefined") {
+    return undefined;
+  }
+
+  return JSON.parse(data);
 };
 
 const AuthService = {

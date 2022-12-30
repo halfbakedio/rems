@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 const parseJwt = (token) => {
@@ -13,14 +13,15 @@ const AuthVerify = (props) => {
   let location = useLocation();
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
+    const data = localStorage.getItem("user");
+    const user = (data == "undefined" || data == {}) ? undefined : JSON.parse(data);
 
-    if (user) {
+    if (user && user.token) {
       const decodedJwt = parseJwt(user.token);
 
       if (decodedJwt.exp * 1000 < Date.now()) {
         /* eslint-disable-next-line react/prop-types */
-        props.logOut();
+        props.logout();
       }
     }
   }, [location, props]);

@@ -8,6 +8,15 @@ module Api
 
         render formats: :json
       end
+
+      def index
+        @pagy, @open_houses = pagy(
+          OpenHouse.all,
+          page: params[:page],
+        )
+
+        render formats: :json
+      end
     end
   end
 end

@@ -8,12 +8,11 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { useFormik } from "formik";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 
-import AuthService from "@services/auth";
-
+import { useAuth } from "~hooks/useAuth";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -27,35 +26,36 @@ const validationSchema = Yup.object().shape({
 
 const Login = () => {
   const navigate = useNavigate();
+  const { state } = useLocation();
+  const { user, login } = useAuth();
 
-  // TODO: redirect to dashboard if already logged in
   // TODO: display loading state
   // TODO: display error message in notification or toast when login fails
 
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
-  const handleLogin = (values: { email: string, password: string }) => {
+  useEffect(() => {
+    if (user?.token) {
+      navigate("/", { replace: true });
+    }
+  }, []);
+
+  const handleLogin = async (values: { email: string, password: string }) => {
     setMessage("");
     setLoading(true);
 
-    AuthService.login(values.email, values.password).then(
-      () => {
-        navigate("/");
-        window.location.reload();
-      },
-      (error: any) => {
-        const resMessage =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
+    try {
+      await login(values.email, values.password);
+      navigate(state?.path || "/");
+      setLoading(false);
+    } catch (error: any) {
+      const resMessage =
+        error.response?.data?.message || error.message || error.toString();
 
-        setLoading(false);
-        setMessage(resMessage);
-      },
-    );
+      setLoading(false);
+      setMessage(resMessage);
+    }
   };
 
   const {
@@ -71,8 +71,8 @@ const Login = () => {
       password: "",
     },
     validationSchema,
-    // validateOnChange: false,
-    // validateOnBlur: false,
+    validateOnChange: true,
+    validateOnBlur: true,
     onSubmit: handleLogin,
   });
 
