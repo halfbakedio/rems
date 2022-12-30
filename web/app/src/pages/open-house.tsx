@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { Loader } from "@components/loader";
-import AuthService from "@services/auth";
 import { useAppDispatch, useTypedSelector } from "@store/index"; // FIXME
 import {
   fetchOpenHouseById,
@@ -14,7 +13,6 @@ import {
 
 const OpenHouse = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const status = useTypedSelector(selectStatus);
   const openHouses = useTypedSelector(selectOpenHouses);
@@ -26,13 +24,6 @@ const OpenHouse = () => {
   const openHouse = () => selectOpenHouse(openHouses, parsedId);
 
   useEffect(() => {
-    const user = AuthService.getCurrentUser();
-
-    if (!user) {
-      navigate("/login");
-      window.location.reload();
-    }
-
     dispatch(fetchOpenHouseById(parsedId));
   }, []);
 

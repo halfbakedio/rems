@@ -1,5 +1,3 @@
-// import Head from "next/head";
-
 import { Footer } from "@components/footer";
 import { Header } from "@components/header";
 import { Sidebar } from "@components/sidebar";
@@ -10,11 +8,6 @@ type Props = {
 
 const Layout = ({ children }: Props) => (
   <>
-    {/* <Head> */}
-    {/*   <title>REMS</title> */}
-    {/*   <meta name="description" content="Real Estate Management System" /> */}
-    {/*   <link rel="icon" href="/favicon.ico" /> */}
-    {/* </Head> */}
     <main className="flex flex-col h-screen">
       <div className="flex flex-1 overflow-hidden">
         <Sidebar />
