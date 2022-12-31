@@ -6,6 +6,9 @@ if Rails.env.development?
   begin
     account = Account.find_or_create_by(name: "REMS")
 
+    role_su = Role.create(name: "su")
+    role_admin = Role.create(name: "admin")
+
     # user setup
     admin = find_or_create_user(
       account: account,
@@ -14,6 +17,9 @@ if Rails.env.development?
       password: "remsrems",
       confirm: true,
     )
+
+    admin.roles = [role_su, role_admin]
+    admin.save!
 
     # property setup
     property = find_or_create_property(
