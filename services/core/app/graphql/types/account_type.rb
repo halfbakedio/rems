@@ -8,6 +8,7 @@ module Types
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
     field :domain, String
     field :subdomain, String
+
     field :users, Types::UserType.connection_type, null: false
   end
 end
