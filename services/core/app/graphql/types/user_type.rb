@@ -21,6 +21,7 @@ module Types
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
     field :username, String
     field :image, String
+
     field :account, Types::AccountType, null: false
     field :roles, [Types::RoleType], null: false
   end

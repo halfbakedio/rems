@@ -15,9 +15,7 @@ Rails/FilePath:
   Enabled: false
 
 Style/Documentation:
-  Enabled: true
-  Exclude:
-    - db/migrate/**/*
+  Enabled: false
 
 Style/FrozenStringLiteralComment:
   Enabled: false
@@ -36,3 +34,7 @@ Style/StringLiterals:
 
 Metrics/MethodLength:
   Enabled: false
+
+Metrics/AbcSize:
+  Exclude:
+  - db/migrate/**/*

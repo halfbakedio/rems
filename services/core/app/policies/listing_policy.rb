@@ -3,6 +3,7 @@ class ListingPolicy < ApplicationPolicy
     attr_reader :user, :scope
 
     def initialize(user, scope)
+      super(user, scope)
       @user = user
       @scope = scope
     end

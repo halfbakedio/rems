@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "seed_helpers.rb"
+require_relative "seed_helpers"
 
 if Rails.env.development?
   begin
@@ -38,7 +38,7 @@ if Rails.env.development?
       start_at: DateTime.parse("2022-12-01T10:30 PST"),
       end_at: DateTime.parse("2022-12-01T14:30 PST"),
     )
-  rescue ActiveRecord::RecordNotUnique => error
-    Rails.logger.info("Something went wrong: #{error}")
+  rescue ActiveRecord::RecordNotUnique => e
+    Rails.logger.info("Something went wrong: #{e}")
   end
 end
