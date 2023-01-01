@@ -1,11 +1,15 @@
 class User < ApplicationRecord
-  acts_as_tenant(:account)
+  # acts_as_tenant(:account)
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable,
-         :confirmable, :trackable
+  devise :database_authenticatable,
+    :registerable,
+    :recoverable,
+    :rememberable,
+    :validatable,
+    :confirmable,
+    :trackable
 
   belongs_to :account
 
@@ -13,10 +17,11 @@ class User < ApplicationRecord
   has_many :roles, through: :assignments
   has_many :listings
 
-  validates :username, uniqueness: { case_sensitive: true },
-                       format: { with: /\A[a-zA-Z0-9]+\z/ },
-                       presence: true,
-                       allow_blank: false
+  validates :username,
+    uniqueness: { case_sensitive: true },
+    format: { with: /\A[a-zA-Z0-9]+\z/ },
+    presence: true,
+    allow_blank: false
 
   def role?(role)
     roles.any? { |r| r.name.underscore.to_sym == role }

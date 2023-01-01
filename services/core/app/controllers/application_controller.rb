@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  set_current_tenant_by_subdomain_or_domain(:account, :subdomain, :domain)
-
   include ActionController::RequestForgeryProtection
   include Pagy::Backend
+  include Pundit::Authorization
 
   protect_from_forgery with: :null_session
 
@@ -13,6 +12,13 @@ class ApplicationController < ActionController::Base
   before_action :underscore_params!
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user
+
+  # set_current_tenant_through_filter
+  # before_action :set_tenant
+
+  # def set_tenant
+  #   set_current_tenant(current_user)
+  # end
 
   private
 
@@ -38,6 +44,11 @@ class ApplicationController < ActionController::Base
   def current_user
     @current_user ||= super || User.find(@current_user_id)
   end
+  
+  def current_account
+    @current_account ||= current_user.try(:account)
+  end
+  helper_method :current_account
 
   def signed_in?
     @current_user_id.present?

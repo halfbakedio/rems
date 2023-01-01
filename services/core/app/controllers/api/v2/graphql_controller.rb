@@ -12,6 +12,7 @@ module Api
         operation_name = params[:operationName]
         context = {
           current_user: current_user,
+          policy_scope: method(:policy_scope),
         }
         result = CoreSchema.execute(
           query,

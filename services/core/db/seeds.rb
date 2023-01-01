@@ -6,7 +6,7 @@ if Rails.env.development?
   begin
     account = Account.find_or_create_by(name: "REMS")
 
-    role_su = Role.create(name: "su")
+    role_su = Role.create(name: "super_admin")
     role_admin = Role.create(name: "admin")
 
     # user setup

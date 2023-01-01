@@ -1,12 +1,4 @@
-class AccountPolicy < ApplicationPolicy
-  def create?
-    user.role? :super_admin
-  end
-
-  def update?
-    user.role? :super_admin || (user.role? :admin && user.account == account)
-  end
-
+class ListingPolicy < ApplicationPolicy
   class Scope < AccountPolicy
     attr_reader :user, :scope
 
@@ -19,7 +11,7 @@ class AccountPolicy < ApplicationPolicy
       if user.role? :super_admin
         @scope.all
       else
-        @scope.where(id: @user.account_id)
+        @scope.where(account_id: @user.account_id)
       end
     end
   end
