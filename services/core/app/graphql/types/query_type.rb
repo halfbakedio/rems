@@ -9,9 +9,9 @@ module Types
       argument :id, ID, required: true
     end
     field :users,
-          Types::UserType.connection_type,
-          null: false,
-          description: "Returns a list of users" do
+      Types::UserType.connection_type,
+      null: false,
+      description: "Returns a list of users" do
       argument :role_id, ID, required: false
     end
 
@@ -19,41 +19,41 @@ module Types
       argument :id, ID, required: true
     end
     field :accounts,
-          Types::AccountType.connection_type,
-          null: false,
-          description: "Returns a list of accounts"
+      Types::AccountType.connection_type,
+      null: false,
+      description: "Returns a list of accounts"
 
     field :contact, Types::ContactType, null: true do
       argument :id, ID, required: true
     end
     field :contacts,
-          Types::ContactType.connection_type,
-          null: false,
-          description: "Returns a list of contacts"
+      Types::ContactType.connection_type,
+      null: false,
+      description: "Returns a list of contacts"
 
     field :listing, Types::ListingType, null: true do
       argument :id, ID, required: true
     end
     field :listings,
-          Types::ListingType.connection_type,
-          null: false,
-          description: "Returns a list of listings"
+      Types::ListingType.connection_type,
+      null: false,
+      description: "Returns a list of listings"
 
     field :open_house, Types::OpenHouseType, null: true do
       argument :id, ID, required: true
     end
     field :open_houses,
-          Types::OpenHouseType.connection_type,
-          null: false,
-          description: "Returns a list of open houses"
+      Types::OpenHouseType.connection_type,
+      null: false,
+      description: "Returns a list of open houses"
 
     field :property, Types::PropertyType, null: true do
       argument :id, ID, required: true
     end
     field :properties,
-          Types::PropertyType.connection_type,
-          null: false,
-          description: "Returns a list of properties"
+      Types::PropertyType.connection_type,
+      null: false,
+      description: "Returns a list of properties"
 
     def me
       context[:current_user]

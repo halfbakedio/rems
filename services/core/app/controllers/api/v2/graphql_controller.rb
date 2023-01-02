@@ -58,7 +58,7 @@ module Api
                  errors: [{ message: error.message, backtrace: error.backtrace }],
                  data: {},
                },
-               status: :internal_server_error
+          status: :internal_server_error
       end
     end
   end

@@ -8,6 +8,7 @@ if Rails.env.development?
 
     role_su = Role.create(name: "super_admin")
     role_admin = Role.create(name: "admin")
+    role_agent = Role.create(name: "agent")
 
     # user setup
     admin = find_or_create_user(
@@ -18,7 +19,7 @@ if Rails.env.development?
       confirm: true,
     )
 
-    admin.roles = [role_su, role_admin]
+    admin.roles = [role_su, role_admin, role_agent]
     admin.save!
 
     # property setup
@@ -41,4 +42,9 @@ if Rails.env.development?
   rescue ActiveRecord::RecordNotUnique => e
     Rails.logger.info("Something went wrong: #{e}")
   end
+elsif Rails.env.test?
+  Role.destroy_all
+  Role.create(name: "super_admin")
+  Role.create(name: "admin")
+  Role.create(name: "agent")
 end

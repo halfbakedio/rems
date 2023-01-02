@@ -8,6 +8,23 @@ AllCops:
 Lint/MissingCopEnableDirective:
   Enabled: false
 
+Layout/ArgumentAlignment:
+  Enabled: true
+  EnforcedStyle: with_fixed_indentation
+
+# Layout/ArrayAlignment:
+#   Enabled: true
+#   EnforcedStyle: with_fixed_indentation
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Layout/MultilineAssignmentLayout:
+  EnforcedStyle: same_line
+
+Layout/EndAlignment:
+  EnforcedStyleAlignWith: variable
+
 Rails:
   Enabled: true
 
