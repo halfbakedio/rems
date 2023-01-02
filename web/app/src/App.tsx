@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import { ProtectedRoute } from "@components/route/protected-route";
 import OpenHouses from "@pages/admin/open-houses";
 import Dashboard from "@pages/dashboard";
+import GraphiQLPage from "@pages/graphiql";
 import Login from "@pages/login";
 import OpenHouse from "@pages/open-house";
 import Profile from "@pages/profile";
@@ -33,6 +34,14 @@ const App = () => {
         />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route
+          path="/graphiql"
+          element={
+            <ProtectedRoute>
+              <GraphiQLPage />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path="/profile"
           element={

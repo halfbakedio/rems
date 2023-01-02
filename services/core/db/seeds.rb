@@ -1,10 +1,14 @@
 # frozen_string_literal: true
 
-require_relative "seed_helpers.rb"
+require_relative "seed_helpers"
 
 if Rails.env.development?
   begin
     account = Account.find_or_create_by(name: "REMS")
+
+    role_su = Role.create(name: "super_admin")
+    role_admin = Role.create(name: "admin")
+    role_agent = Role.create(name: "agent")
 
     # user setup
     admin = find_or_create_user(
@@ -14,6 +18,9 @@ if Rails.env.development?
       password: "remsrems",
       confirm: true,
     )
+
+    admin.roles = [role_su, role_admin, role_agent]
+    admin.save!
 
     # property setup
     property = find_or_create_property(
@@ -32,7 +39,12 @@ if Rails.env.development?
       start_at: DateTime.parse("2022-12-01T10:30 PST"),
       end_at: DateTime.parse("2022-12-01T14:30 PST"),
     )
-  rescue ActiveRecord::RecordNotUnique => error
-    Rails.logger.info("Something went wrong: #{error}")
+  rescue ActiveRecord::RecordNotUnique => e
+    Rails.logger.info("Something went wrong: #{e}")
   end
+elsif Rails.env.test?
+  Role.destroy_all
+  Role.create(name: "super_admin")
+  Role.create(name: "admin")
+  Role.create(name: "agent")
 end
