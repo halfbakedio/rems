@@ -1,4 +1,5 @@
 import "@animxyz/core";
+import { ApolloProvider } from "@apollo/client";
 import { ThemeProvider } from "@material-tailwind/react";
 import React from "react";
 import ReactDOM from "react-dom/client";
@@ -12,6 +13,7 @@ import "../node_modules/flowbite/dist/flowbite.js";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { store } from "./store";
+import { graphqlClient } from "./common/graphql";
 
 import "./styles/tailwind.css";
 
@@ -23,7 +25,9 @@ root.render(
       <BrowserRouter>
         <ThemeProvider>
           <Provider store={store}>
-            <App />
+            <ApolloProvider client={graphqlClient}>
+              <App />
+            </ApolloProvider>
           </Provider>
         </ThemeProvider>
       </BrowserRouter>
