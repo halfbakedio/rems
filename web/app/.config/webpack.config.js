@@ -17,9 +17,11 @@ const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
 const WorkboxWebpackPlugin = require("workbox-webpack-plugin");
 const fs = require("fs");
 const path = require("path");
+
 const getClientEnvironment = require("./env");
 const modules = require("./modules");
 const paths = require("./paths");
+
 const ForkTsCheckerWebpackPlugin =
   process.env.TSC_COMPILE_ON_ERROR === "true"
     ? require("react-dev-utils/ForkTsCheckerWarningWebpackPlugin")
@@ -354,6 +356,11 @@ module.exports = function (webpackEnv) {
           exclude: /@babel(?:\/|\\{1,2})runtime/,
           test: /\.(js|mjs|jsx|ts|tsx|css)$/,
           loader: require.resolve("source-map-loader"),
+        },
+        {
+          test: /\.(graphql|gql)$/,
+          exclude: /node_modules/,
+          loader: "graphql-tag/loader",
         },
         {
           // "oneOf" will traverse all following loaders until one will
