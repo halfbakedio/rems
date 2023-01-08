@@ -12,20 +12,11 @@ import {
   NavbarToggler,
 } from "@components/navbar";
 
-import getProfile from "@/common/graphql/queries/get-profile.graphql";
-
-// const GET_PROFILE = gql`
-//   query GetProfile {
-//     me {
-//       email
-//       image
-//     }
-//   }
-// `;
+// eslint-disable-next-line import/no-unresolved
+import GetProfile from "@/common/graphql/queries/get-profile.graphql";
 
 export const Header = () => {
-  const { loading, error, data } = useQuery(getProfile);
-  // const { loading, error, data } = useQuery(GET_PROFILE);
+  const { loading, error, data } = useQuery(GetProfile);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error.message}</p>;

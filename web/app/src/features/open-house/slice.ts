@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import PropertyService from "@services/property";
-import { RootState } from "@store/index"; // FIXME
-import { ErrorMessage, OpenHouse } from "~types/index"; // FIXME
+import { RootState } from "@store"; // FIXME
+import { ErrorMessage, OpenHouse } from "~types";
 
 export type OpenHouseState = {
   entities: OpenHouse[];
