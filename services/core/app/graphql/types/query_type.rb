@@ -56,7 +56,7 @@ module Types
       description: "Returns a list of properties"
 
     def me
-      context[:current_user]
+      current_user
     end
 
     def user(id:)
@@ -113,12 +113,6 @@ module Types
 
     def properties
       policy_scope(Property)
-    end
-
-    private
-
-    def policy_scope(*args)
-      context[:policy_scope].call(*args)
     end
   end
 end

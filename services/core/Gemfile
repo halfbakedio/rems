@@ -7,7 +7,6 @@ ruby "3.0.3"
 
 gem "rails", "~> 7.0.3", ">= 7.0.3.1"
 
-gem "acts_as_tenant"
 gem "bootsnap", require: false
 gem "devise"
 gem "graphql"

@@ -1,5 +1,7 @@
+import { useQuery } from "@apollo/client";
 import { faTents } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import {
   Navbar,
   NavbarBrand,
@@ -10,8 +12,15 @@ import {
   NavbarToggler,
 } from "@components/navbar";
 
+// eslint-disable-next-line import/no-unresolved
+import GetProfile from "@/common/graphql/queries/get-profile.graphql";
 
 export const Header = () => {
+  const { loading, error, data } = useQuery(GetProfile);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error : {error.message}</p>;
+
   return (
     <header className="flex">
       <Navbar className="bg-white text-gray-600">
@@ -32,9 +41,11 @@ export const Header = () => {
             <NavbarItem>
               <NavbarLink href="#">Basic Features</NavbarLink>
             </NavbarItem>
-            <NavbarItem>
-              <NavbarLink href="#">Advanced Features</NavbarLink>
-            </NavbarItem>
+            {data.me &&
+              <NavbarItem>
+                <NavbarLink href="#">{data.me.email}</NavbarLink>
+              </NavbarItem>
+            }
           </NavbarNav>
         </NavbarCollapse>
       </Navbar>

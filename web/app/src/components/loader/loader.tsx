@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import { XyzTransitionGroup } from "@animxyz/react";
+import { useEffect, useState } from "react";
 
 const Loader = () => {
   const [animDirection, setAnimDirection] = useState(false);

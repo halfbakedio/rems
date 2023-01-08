@@ -1,6 +1,4 @@
 class Account < ApplicationRecord
-  # acts_as_tenant
-
   has_many :users
   has_many :properties
 

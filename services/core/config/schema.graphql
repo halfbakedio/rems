@@ -1,0 +1,525 @@
+type Account {
+  createdAt: ISO8601DateTime!
+  domain: String
+  id: ID!
+  name: String
+  subdomain: String
+  updatedAt: ISO8601DateTime!
+  users(
+    """
+    Returns the elements in the list that come after the specified cursor.
+    """
+    after: String
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+
+    """
+    Returns the first _n_ elements from the list.
+    """
+    first: Int
+
+    """
+    Returns the last _n_ elements from the list.
+    """
+    last: Int
+  ): UserConnection!
+}
+
+"""
+The connection type for Account.
+"""
+type AccountConnection {
+  """
+  A list of edges.
+  """
+  edges: [AccountEdge]
+
+  """
+  A list of nodes.
+  """
+  nodes: [Account]
+
+  """
+  Information to aid in pagination.
+  """
+  pageInfo: PageInfo!
+}
+
+"""
+An edge in a connection.
+"""
+type AccountEdge {
+  """
+  A cursor for use in pagination.
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge.
+  """
+  node: Account
+}
+
+type Contact {
+  createdAt: ISO8601DateTime!
+  email: String
+  firstName: String
+  id: ID!
+  lastName: String
+  lead: Boolean
+  phone: String
+  updatedAt: ISO8601DateTime!
+}
+
+"""
+The connection type for Contact.
+"""
+type ContactConnection {
+  """
+  A list of edges.
+  """
+  edges: [ContactEdge]
+
+  """
+  A list of nodes.
+  """
+  nodes: [Contact]
+
+  """
+  Information to aid in pagination.
+  """
+  pageInfo: PageInfo!
+}
+
+"""
+An edge in a connection.
+"""
+type ContactEdge {
+  """
+  A cursor for use in pagination.
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge.
+  """
+  node: Contact
+}
+
+"""
+An ISO 8601-encoded datetime
+"""
+scalar ISO8601DateTime
+
+type Listing {
+  agent: User!
+  createdAt: ISO8601DateTime!
+  id: ID!
+  openHouses(
+    """
+    Returns the elements in the list that come after the specified cursor.
+    """
+    after: String
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+
+    """
+    Returns the first _n_ elements from the list.
+    """
+    first: Int
+
+    """
+    Returns the last _n_ elements from the list.
+    """
+    last: Int
+  ): OpenHouseConnection
+  property: Property!
+  updatedAt: ISO8601DateTime!
+}
+
+"""
+The connection type for Listing.
+"""
+type ListingConnection {
+  """
+  A list of edges.
+  """
+  edges: [ListingEdge]
+
+  """
+  A list of nodes.
+  """
+  nodes: [Listing]
+
+  """
+  Information to aid in pagination.
+  """
+  pageInfo: PageInfo!
+}
+
+"""
+An edge in a connection.
+"""
+type ListingEdge {
+  """
+  A cursor for use in pagination.
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge.
+  """
+  node: Listing
+}
+
+type Mutation {
+  """
+  An example field added by the generator
+  """
+  testField: String!
+}
+
+type OpenHouse {
+  createdAt: ISO8601DateTime!
+  endAt: ISO8601DateTime
+  id: ID!
+  listing: Listing!
+  startAt: ISO8601DateTime
+  updatedAt: ISO8601DateTime!
+}
+
+"""
+The connection type for OpenHouse.
+"""
+type OpenHouseConnection {
+  """
+  A list of edges.
+  """
+  edges: [OpenHouseEdge]
+
+  """
+  A list of nodes.
+  """
+  nodes: [OpenHouse]
+
+  """
+  Information to aid in pagination.
+  """
+  pageInfo: PageInfo!
+}
+
+"""
+An edge in a connection.
+"""
+type OpenHouseEdge {
+  """
+  A cursor for use in pagination.
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge.
+  """
+  node: OpenHouse
+}
+
+"""
+Information about pagination in a connection.
+"""
+type PageInfo {
+  """
+  When paginating forwards, the cursor to continue.
+  """
+  endCursor: String
+
+  """
+  When paginating forwards, are there more items?
+  """
+  hasNextPage: Boolean!
+
+  """
+  When paginating backwards, are there more items?
+  """
+  hasPreviousPage: Boolean!
+
+  """
+  When paginating backwards, the cursor to continue.
+  """
+  startCursor: String
+}
+
+type Property {
+  address: String
+  createdAt: ISO8601DateTime!
+  id: ID!
+  image: String
+  updatedAt: ISO8601DateTime!
+}
+
+"""
+The connection type for Property.
+"""
+type PropertyConnection {
+  """
+  A list of edges.
+  """
+  edges: [PropertyEdge]
+
+  """
+  A list of nodes.
+  """
+  nodes: [Property]
+
+  """
+  Information to aid in pagination.
+  """
+  pageInfo: PageInfo!
+}
+
+"""
+An edge in a connection.
+"""
+type PropertyEdge {
+  """
+  A cursor for use in pagination.
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge.
+  """
+  node: Property
+}
+
+type Query {
+  account(id: ID!): Account
+
+  """
+  Returns a list of accounts
+  """
+  accounts(
+    """
+    Returns the elements in the list that come after the specified cursor.
+    """
+    after: String
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+
+    """
+    Returns the first _n_ elements from the list.
+    """
+    first: Int
+
+    """
+    Returns the last _n_ elements from the list.
+    """
+    last: Int
+  ): AccountConnection!
+  contact(id: ID!): Contact
+
+  """
+  Returns a list of contacts
+  """
+  contacts(
+    """
+    Returns the elements in the list that come after the specified cursor.
+    """
+    after: String
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+
+    """
+    Returns the first _n_ elements from the list.
+    """
+    first: Int
+
+    """
+    Returns the last _n_ elements from the list.
+    """
+    last: Int
+  ): ContactConnection!
+  listing(id: ID!): Listing
+
+  """
+  Returns a list of listings
+  """
+  listings(
+    """
+    Returns the elements in the list that come after the specified cursor.
+    """
+    after: String
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+
+    """
+    Returns the first _n_ elements from the list.
+    """
+    first: Int
+
+    """
+    Returns the last _n_ elements from the list.
+    """
+    last: Int
+  ): ListingConnection!
+  me: User
+  openHouse(id: ID!): OpenHouse
+
+  """
+  Returns a list of open houses
+  """
+  openHouses(
+    """
+    Returns the elements in the list that come after the specified cursor.
+    """
+    after: String
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+
+    """
+    Returns the first _n_ elements from the list.
+    """
+    first: Int
+
+    """
+    Returns the last _n_ elements from the list.
+    """
+    last: Int
+  ): OpenHouseConnection!
+
+  """
+  Returns a list of properties
+  """
+  properties(
+    """
+    Returns the elements in the list that come after the specified cursor.
+    """
+    after: String
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+
+    """
+    Returns the first _n_ elements from the list.
+    """
+    first: Int
+
+    """
+    Returns the last _n_ elements from the list.
+    """
+    last: Int
+  ): PropertyConnection!
+  property(id: ID!): Property
+  user(id: ID!): User
+
+  """
+  Returns a list of users
+  """
+  users(
+    """
+    Returns the elements in the list that come after the specified cursor.
+    """
+    after: String
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+
+    """
+    Returns the first _n_ elements from the list.
+    """
+    first: Int
+
+    """
+    Returns the last _n_ elements from the list.
+    """
+    last: Int
+    roleId: ID
+  ): UserConnection!
+}
+
+type Role {
+  createdAt: ISO8601DateTime!
+  id: ID!
+  name: String
+  updatedAt: ISO8601DateTime!
+}
+
+type User {
+  account: Account!
+  confirmationSentAt: ISO8601DateTime
+  confirmationToken: String
+  confirmedAt: ISO8601DateTime
+  createdAt: ISO8601DateTime!
+  currentSignInAt: ISO8601DateTime
+  currentSignInIp: String
+  email: String!
+  encryptedPassword: String!
+  id: ID!
+  image: String
+  lastSignInAt: ISO8601DateTime
+  lastSignInIp: String
+  rememberCreatedAt: ISO8601DateTime
+  resetPasswordSentAt: ISO8601DateTime
+  resetPasswordToken: String
+  roles: [Role!]!
+  signInCount: Int!
+  unconfirmedEmail: String
+  updatedAt: ISO8601DateTime!
+  username: String
+}
+
+"""
+The connection type for User.
+"""
+type UserConnection {
+  """
+  A list of edges.
+  """
+  edges: [UserEdge]
+
+  """
+  A list of nodes.
+  """
+  nodes: [User]
+
+  """
+  Information to aid in pagination.
+  """
+  pageInfo: PageInfo!
+}
+
+"""
+An edge in a connection.
+"""
+type UserEdge {
+  """
+  A cursor for use in pagination.
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge.
+  """
+  node: User
+}
