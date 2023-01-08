@@ -6,7 +6,9 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "lint": "eslint --fix src/"
+    "lint": "eslint --fix src/",
+    "graphql:schema:download": "echo \"requires header with auth, maybe later\" # npx apollo service:download --endpoint=http://localhost:4000/ graphql-schema.json",
+    "graphql:schema:types": "npx apollo codegen:generate --localSchemaFile=../../services/core/config/schema.json --target=typescript --tagName=graphql"
   },
   "dependencies": {
     "@animxyz/react": "^0.6.7",
@@ -30,6 +32,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
+    "@graphql-codegen/cli": "^2.16.3",
+    "@graphql-codegen/client-preset": "^1.2.5",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
     "@svgr/webpack": "^5.5.0",
     "@testing-library/jest-dom": "^5.16.4",
