@@ -11,9 +11,9 @@ import { AuthProvider } from "~hooks/useAuth";
 import "../node_modules/flowbite/dist/flowbite.js";
 
 import App from "./App";
+import { graphqlClient } from "./common/graphql";
 import * as serviceWorker from "./serviceWorker";
 import { store } from "./store";
-import { graphqlClient } from "./common/graphql";
 
 import "./styles/tailwind.css";
 
