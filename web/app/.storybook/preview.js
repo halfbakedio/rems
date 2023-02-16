@@ -1,3 +1,5 @@
+import { initialize, mswDecorator } from "msw-storybook-addon";
+
 import "../src/styles/tailwind.css";
 
 export const parameters = {
@@ -9,3 +11,7 @@ export const parameters = {
     },
   },
 }
+
+initialize();
+
+export const decorators = [mswDecorator];

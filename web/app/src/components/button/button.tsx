@@ -1,13 +1,13 @@
 import classnames from "classnames";
 
 type Props = {
-  children?: React.ReactNode;
+  children?: React.ReactNode,
   size: string,
   bgColor: string,
   textColor: string,
 };
 
-function Button ({ size, bgColor, textColor, children }: Props) {
+const Button = ({ size, bgColor, textColor, children }: Props) => {
   return (
     <button
       className={
@@ -23,6 +23,6 @@ function Button ({ size, bgColor, textColor, children }: Props) {
       {children}
     </button>
   );
-}
+};
 
 export default Button;

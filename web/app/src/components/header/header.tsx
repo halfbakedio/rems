@@ -2,6 +2,7 @@ import { useQuery } from "@apollo/client";
 import { faTents } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import { Avatar } from "@components/avatar";
 import {
   Navbar,
   NavbarBrand,
@@ -43,7 +44,7 @@ export const Header = () => {
             </NavbarItem>
             {data.me &&
               <NavbarItem>
-                <NavbarLink href="#">{data.me.email}</NavbarLink>
+                <Avatar name={data.me.email} size="sm" />
               </NavbarItem>
             }
           </NavbarNav>

@@ -8,9 +8,9 @@
     "test": "node scripts/test.js",
     "lint": "eslint --fix src/",
     "graphql:codegen": "graphql-codegen --config codegen.yml",
-    "start:storybook": "start-storybook -p 6006",
-    "build:storybook": "build-storybook",
-    "restart:storybook": "overmind restart storybook --socket ../../.overmind.sock"
+    "storybook:start": "start-storybook -p 6006",
+    "storybook:build": "build-storybook",
+    "storybook:restart": "overmind restart storybook --socket ../../.overmind.sock"
   },
   "dependencies": {
     "@animxyz/react": "^0.6.7",
@@ -101,6 +101,8 @@
     "jest-resolve": "^27.4.2",
     "jest-watch-typeahead": "^1.0.0",
     "mini-css-extract-plugin": "^2.4.5",
+    "msw": "^1.0.1",
+    "msw-storybook-addon": "^1.7.0",
     "postcss": "^8.4.20",
     "postcss-cli": "^10.1.0",
     "postcss-flexbugs-fixes": "^5.0.2",
@@ -196,5 +198,8 @@
     "presets": [
       "react-app"
     ]
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }

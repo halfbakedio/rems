@@ -21,6 +21,7 @@ module.exports = {
   features: {
     emotionAlias: false,
   },
+  staticDirs: ["../public"],
 
   webpackFinal: async (config) => {
     config.module.rules.push({
