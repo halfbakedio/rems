@@ -1,5 +1,6 @@
 import "@animxyz/core";
 import { ApolloProvider } from "@apollo/client";
+import { ChakraProvider } from "@chakra-ui/react";
 import { ThemeProvider } from "@material-tailwind/react";
 import React from "react";
 import ReactDOM from "react-dom/client";
@@ -24,11 +25,13 @@ root.render(
     <AuthProvider>
       <BrowserRouter>
         <ThemeProvider>
-          <Provider store={store}>
-            <ApolloProvider client={graphqlClient}>
-              <App />
-            </ApolloProvider>
-          </Provider>
+          <ChakraProvider>
+            <Provider store={store}>
+              <ApolloProvider client={graphqlClient}>
+                <App />
+              </ApolloProvider>
+            </Provider>
+          </ChakraProvider>
         </ThemeProvider>
       </BrowserRouter>
     </AuthProvider>

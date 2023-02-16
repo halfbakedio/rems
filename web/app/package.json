@@ -8,8 +8,9 @@
     "test": "node scripts/test.js",
     "lint": "eslint --fix src/",
     "graphql:codegen": "graphql-codegen --config codegen.yml",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "start:storybook": "start-storybook -p 6006",
+    "build:storybook": "build-storybook",
+    "restart:storybook": "overmind restart storybook --socket ../../.overmind.sock"
   },
   "dependencies": {
     "@animxyz/react": "^0.6.7",
@@ -33,6 +34,10 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
+    "@chakra-ui/react": "^2.4.9",
+    "@chakra-ui/storybook-addon": "^4.0.16",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
     "@graphql-codegen/cli": "2.16.3",
     "@graphql-codegen/client-preset": "1.2.5",
     "@graphql-codegen/introspection": "^2.2.3",
@@ -42,6 +47,7 @@
     "@graphql-codegen/typescript-react-apollo": "^3.3.7",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
     "@storybook/addon-actions": "^6.5.16",
+    "@storybook/addon-controls": "^6.5.16",
     "@storybook/addon-essentials": "^6.5.16",
     "@storybook/addon-interactions": "^6.5.16",
     "@storybook/addon-links": "^6.5.16",
@@ -86,6 +92,7 @@
     "flowbite": "^1.6.0",
     "flowbite-react": "^0.3.7",
     "formik": "^2.2.9",
+    "framer-motion": "^9.0.2",
     "fs-extra": "^11.1.0",
     "graphql-tag": "^2.12.6",
     "html-webpack-plugin": "^5.5.0",
