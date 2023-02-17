@@ -20,6 +20,9 @@ import { Link, useNavigate } from "react-router-dom";
 // import { faTents } from "@fortawesome/free-solid-svg-icons";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+// eslint-disable-next-line import/no-unresolved
+import GetProfile from "@/common/graphql/queries/get-profile.graphql";
+
 import { Avatar } from "@components/avatar";
 // import {
 //   Navbar,
@@ -32,9 +35,6 @@ import { Avatar } from "@components/avatar";
 // } from "@components/navbar";
 
 import { useAuth } from "~hooks/useAuth";
-
-// eslint-disable-next-line import/no-unresolved
-import GetProfile from "@/common/graphql/queries/get-profile.graphql";
 
 type Props = {
   name: string;

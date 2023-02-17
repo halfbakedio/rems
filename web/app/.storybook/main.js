@@ -53,7 +53,7 @@ module.exports = {
       "@store": toPath("src/store"),
       "@styles": toPath("src/styles"),
       "~features": toPath("src/features"),
-      "~hooks": toPath("src/hooks"),
+      "~hooks": toPath("src/common/hooks"),
       "~types": toPath("src/types"),
       "~utils": toPath("src/common/utils"),
     };

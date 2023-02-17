@@ -15,6 +15,7 @@ export interface Logger {
 /** Log levels */
 export type LogLevel = "log" | "warn" | "error";
 
+// eslint-disable-next-line @typescript-eslint/no-empty-function
 const NO_OP: LogFn = (message?: any, ...optionalParams: any[]) => {};
 
 /** Logger which outputs to the browser console */
@@ -34,7 +35,8 @@ class ConsoleLogger implements Logger {
 
       return;
     }
-    
+
+    // eslint-disable-next-line no-console
     this.warn = console.warn.bind(console);
 
     if (level === "warn") {
@@ -43,6 +45,7 @@ class ConsoleLogger implements Logger {
       return;
     }
 
+    // eslint-disable-next-line no-console
     this.log = console.log.bind(console);
   }
 }
