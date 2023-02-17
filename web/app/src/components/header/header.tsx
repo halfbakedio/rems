@@ -16,6 +16,7 @@ import {
   Spacer,
 } from "@chakra-ui/react";
 import { BiLogOut, BiNotification, BiSliderAlt, BiUser } from "react-icons/bi";
+import { Link, useNavigate } from "react-router-dom";
 // import { faTents } from "@fortawesome/free-solid-svg-icons";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -30,6 +31,8 @@ import { Avatar } from "@components/avatar";
 //   NavbarToggler,
 // } from "@components/navbar";
 
+import { useAuth } from "~hooks/useAuth";
+
 // eslint-disable-next-line import/no-unresolved
 import GetProfile from "@/common/graphql/queries/get-profile.graphql";
 
@@ -38,16 +41,37 @@ type Props = {
 };
  
 const ProfileMenu = ({ name }: Props) => {
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await logout();
+    navigate("/login");
+  };
+
   return (
     <Menu>
       <MenuButton>
         <Avatar name={name} size="sm" />
       </MenuButton>
       <MenuList>
-        <MenuItem icon={<Icon boxSize="1.25em" as={BiSliderAlt} />}>Profile</MenuItem>
-        <MenuItem icon={<Icon boxSize="1.25em" as={BiUser} />}>Settings</MenuItem>
+        <Link to="/profile">
+          <MenuItem icon={<Icon boxSize="1.25em" as={BiSliderAlt} />}>
+            Profile
+          </MenuItem>
+        </Link>
+        <Link to="/settings">
+          <MenuItem icon={<Icon boxSize="1.25em" as={BiUser} />}>
+            Settings
+          </MenuItem>
+        </Link>
         <MenuDivider />
-        <MenuItem icon={<Icon boxSize="1.25em" as={BiLogOut} />}>Sign out</MenuItem>
+        <MenuItem
+          onClick={handleLogout}
+          icon={<Icon boxSize="1.25em" as={BiLogOut} />}
+        >
+          Sign out
+        </MenuItem>
       </MenuList>
     </Menu>
   );
