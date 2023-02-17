@@ -2,16 +2,21 @@ import { ReactNode, useCallback } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 
 import { ProtectedRoute } from "@components/route/protected-route";
-import { default as AdminOpenHouses } from "@pages/admin/open-houses";
-import Dashboard from "@pages/dashboard";
-import GraphiQLPage from "@pages/graphiql";
-import { Contacts, Projects, Tasks } from "@pages/index";
-import Login from "@pages/login";
-import OpenHouse from "@pages/open-house";
-import Profile from "@pages/profile";
-import Register from "@pages/register";
 
+import { Page as AdminOpenHouses } from "~features/admin/open-houses";
+import {
+  LoginPage as Login,
+  RegisterPage as Register,
+} from "~features/auth";
+import { Page as Contacts } from "~features/contacts";
+import { Page as Dashboard } from "~features/dashboard";
+import { Page as GraphiQL } from "~features/graphiql";
+import { Page as OpenHouse } from "~features/open-house";
+import { Page as Projects } from "~features/projects";
 import { Page as Settings } from "~features/settings";
+import { Page as Tasks } from "~features/tasks";
+import { ProfilePage as Profile } from "~features/user";
+
 import { useAuth } from "~hooks/useAuth";
 
 import AuthVerify from "./common/auth-verify";
@@ -52,7 +57,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
-        {protectedRoute("/graphiql", <GraphiQLPage />)}
+        {protectedRoute("/graphiql", <GraphiQL />)}
 
         <Route path="/admin">
           {protectedRoute("open-houses", <AdminOpenHouses />)}

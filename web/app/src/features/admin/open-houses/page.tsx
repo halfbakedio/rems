@@ -11,7 +11,7 @@ import PropertyService from "@services/property";
 
 import { ErrorMessage, OpenHouse } from "~types/index";
 
-const OpenHouses = () => {
+const Page = () => {
   const [errorMessage, setErrorMessage] = useState<ErrorMessage | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(false);
   const [openHouses, setOpenHouses] = useState<Array<OpenHouse | undefined>>([]);
@@ -75,4 +75,4 @@ const OpenHouses = () => {
   );
 };
 
-export default OpenHouses;
+export default Page;

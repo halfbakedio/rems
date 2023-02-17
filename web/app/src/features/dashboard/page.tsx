@@ -2,10 +2,10 @@ import { Box, chakra, Icon, SimpleGrid } from "@chakra-ui/react";
 import { ResponsiveFunnel } from "@nivo/funnel";
 import { BiBuildingHouse, BiMoney, BiUser } from "react-icons/bi";
 
+import { data } from "@/common/mocks/contact-funnel-data.js";
+
 import { StatsCard } from "@components/card";
 import { Layout } from "@components/layout";
-
-import { data } from "../common/mock/contact-funnel-data.js";
 
 const AccountStatistics = () => {
   return (
