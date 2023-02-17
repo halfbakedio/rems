@@ -55,6 +55,7 @@ module.exports = {
       "~features": toPath("src/features"),
       "~hooks": toPath("src/hooks"),
       "~types": toPath("src/types"),
+      "~utils": toPath("src/common/utils"),
     };
  
     return config;
