@@ -5,6 +5,7 @@
   "scripts": {
     "start": "yarn run graphql:codegen && node scripts/start.js",
     "build": "yarn run graphql:codegen && node scripts/build.js",
+    "restart": "overmind restart app --socket ../../.overmind.sock",
     "test": "node scripts/test.js",
     "lint": "eslint --fix src/",
     "graphql:codegen": "graphql-codegen --config codegen.yml",
@@ -34,6 +35,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
+    "@chakra-ui/icons": "^2.0.17",
     "@chakra-ui/react": "^2.4.9",
     "@chakra-ui/storybook-addon": "^4.0.16",
     "@emotion/react": "^11.10.5",
@@ -112,6 +114,7 @@
     "prompts": "^2.4.2",
     "react-app-polyfill": "^3.0.0",
     "react-dev-utils": "^12.0.1",
+    "react-icons": "^4.7.1",
     "resolve": "^1.20.0",
     "resolve-url-loader": "^4.0.0",
     "sass-loader": "^12.3.0",

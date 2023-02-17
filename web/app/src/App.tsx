@@ -5,6 +5,7 @@ import { ProtectedRoute } from "@components/route/protected-route";
 import OpenHouses from "@pages/admin/open-houses";
 import Dashboard from "@pages/dashboard";
 import GraphiQLPage from "@pages/graphiql";
+import { Contacts, Projects, Tasks } from "@pages/index";
 import Login from "@pages/login";
 import OpenHouse from "@pages/open-house";
 import Profile from "@pages/profile";
@@ -32,13 +33,19 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
         <Route
-          path="/graphiql"
+          path="/contacts"
           element={
             <ProtectedRoute>
-              <GraphiQLPage />
+              <Contacts />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/open-houses/:id"
+          element={
+            <ProtectedRoute>
+              <OpenHouse />
             </ProtectedRoute>
           }
         />
@@ -51,13 +58,34 @@ const App = () => {
           }
         />
         <Route
-          path="/open-houses/:id"
+          path="/projects"
           element={
             <ProtectedRoute>
-              <OpenHouse />
+              <Projects />
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/tasks"
+          element={
+            <ProtectedRoute>
+              <Tasks />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+
+        <Route
+          path="/graphiql"
+          element={
+            <ProtectedRoute>
+              <GraphiQLPage />
+            </ProtectedRoute>
+          }
+        />
+
         <Route path="/admin">
           <Route
             path="open-houses"

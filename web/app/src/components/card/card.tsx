@@ -23,4 +23,4 @@ const Card = ({ children, title }: Props) => {
   );
 };
 
-export { Card };
+export default Card;

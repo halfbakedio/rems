@@ -1,4 +1,5 @@
-import { Footer } from "@components/footer";
+import { Box, Flex, VStack } from "@chakra-ui/react";
+
 import { Header } from "@components/header";
 import { Sidebar } from "@components/sidebar";
 
@@ -7,22 +8,19 @@ type Props = {
 };
 
 const Layout = ({ children }: Props) => (
-  <>
-    <main className="flex flex-col h-screen">
-      <div className="flex flex-1 overflow-hidden">
-        <Sidebar />
-        <div className="flex flex-1 flex-col">
-          <Header />
-          <div className="flex flex-1 overflow-y-auto">
-            <div className="flex flex-wrap">
-              {children}
-            </div>
-          </div>
-        </div>
-      </div>
-      <Footer />
-    </main>
-  </>
+  <Flex direction="column" h="100%">
+    <Flex flex="1" overflow="hidden">
+      <Sidebar />
+      <VStack align="stretch" w="100%" spacing={0}>
+        <Header />
+        <Flex w="100%" h="100%" wrap="wrap">
+          <Box p="8px" w="100%" borderTop="1px" borderColor="gray.200">
+            {children}
+          </Box>
+        </Flex>
+      </VStack>
+    </Flex>
+  </Flex>
 );
 
 export default Layout;
