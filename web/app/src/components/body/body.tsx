@@ -1,10 +1,11 @@
-import { Card, CardBody, CardText, CardTitle } from "@components/card";
-import { RightArrow } from "@components/icon";
+// import { Card, CardBody, CardText, CardTitle } from "@components/card";
+// import { RightArrow } from "@components/icon";
 
 const Body = () => {
   return (
     <>
       <div className="w-full md:w-4/12 mb-6 md:mb-0 md:p-3">
+      {/*
         <Card>
           <img
             className="max-w-full h-auto md:h-48"
@@ -63,6 +64,7 @@ const Body = () => {
             </a>
           </CardBody>
         </Card>
+      */}
       </div>
     </>
   );

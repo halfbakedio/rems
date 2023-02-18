@@ -1,3 +1,5 @@
+import { default as Page } from "./page";
+
 import {
   fetchOpenHouseById,
   selectOpenHouse,
@@ -26,4 +28,6 @@ export {
   selectStatus,
   selectOpenHouse,
   selectOpenHouses,
+  // components
+  Page,
 };

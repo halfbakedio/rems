@@ -34,6 +34,8 @@
       "~hooks/*": ["src/common/hooks/*"],
       "~types": ["src/types"],
       "~types/*": ["src/types/*"],
+      "~utils": ["src/common/utils"],
+      "~utils/*": ["src/common/utils/*"]
     }
   },
   "include": [

@@ -1,14 +1,21 @@
-import { useCallback } from "react";
-import { Route, Routes } from "react-router-dom";
+import { ReactNode, useCallback } from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
 
 import { ProtectedRoute } from "@components/route/protected-route";
-import OpenHouses from "@pages/admin/open-houses";
-import Dashboard from "@pages/dashboard";
-import GraphiQLPage from "@pages/graphiql";
-import Login from "@pages/login";
-import OpenHouse from "@pages/open-house";
-import Profile from "@pages/profile";
-import Register from "@pages/register";
+
+import { Page as AdminOpenHouses } from "~features/admin/open-houses";
+import {
+  LoginPage as Login,
+  RegisterPage as Register,
+} from "~features/auth";
+import { Page as Contacts } from "~features/contacts";
+import { Page as Dashboard } from "~features/dashboard";
+import { Page as GraphiQL } from "~features/graphiql";
+import { Page as OpenHouse } from "~features/open-house";
+import { Page as Projects } from "~features/projects";
+import { Page as Settings } from "~features/settings";
+import { Page as Tasks } from "~features/tasks";
+import { ProfilePage as Profile } from "~features/user";
 
 import { useAuth } from "~hooks/useAuth";
 
@@ -21,53 +28,42 @@ const App = () => {
     logout();
   }, []);
 
+  const protectedRoute = (path: string | undefined, component: ReactNode) => {
+    const wrappedComponent = () => (
+      <ProtectedRoute>
+        {component}
+      </ProtectedRoute>
+    );
+
+    // assume that the route is the index if path is undefined
+    if (path) {
+      return <Route path={path} element={wrappedComponent()} />;
+    } else {
+      return <Route index element={wrappedComponent()} />;
+    }
+  };
+
   return (
     <>
       <Routes>
-        <Route
-          index
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          }
-        />
+        {protectedRoute(undefined, <Dashboard />)}
+        {protectedRoute("/contacts", <Contacts />)}
+        {protectedRoute("/open-houses/:id", <OpenHouse />)}
+        {protectedRoute("/profile", <Profile />)}
+        {protectedRoute("/projects", <Projects />)}
+        {protectedRoute("/settings", <Settings />)}
+        {protectedRoute("/tasks", <Tasks />)}
+
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route
-          path="/graphiql"
-          element={
-            <ProtectedRoute>
-              <GraphiQLPage />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/open-houses/:id"
-          element={
-            <ProtectedRoute>
-              <OpenHouse />
-            </ProtectedRoute>
-          }
-        />
+
+        {protectedRoute("/graphiql", <GraphiQL />)}
+
         <Route path="/admin">
-          <Route
-            path="open-houses"
-            element={
-              <ProtectedRoute>
-                <OpenHouses />
-              </ProtectedRoute>
-            }
-          />
+          {protectedRoute("open-houses", <AdminOpenHouses />)}
         </Route>
+
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
 
       <AuthVerify logout={handleLogout} />

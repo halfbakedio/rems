@@ -1,3 +1,5 @@
+import { Link } from "@chakra-ui/react";
+
 type SidenavProps = {
   children?: React.ReactNode;
   open: boolean;
@@ -38,11 +40,11 @@ const Sidenav = ({ open, toggle, children }: SidenavProps) => {
 
 const SidenavItem = ({ children, href }: SidenavItemProps) => {
   return (
-    <>
-      <a href={href} className={style.item}>
+    // <Flex justify="start" placeItems="center" ml="16px" h="24px">
+      <Link href={href} className={style.item}>
         {children}
-      </a>
-    </>
+      </Link>
+    // </Flex>
   );
 };
 

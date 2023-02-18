@@ -1,4 +1,7 @@
 {
+  "globals": {
+    "localStorage": true
+  },
   "parser": "@typescript-eslint/parser",
   "extends": [
     "eslint:recommended",
@@ -12,7 +15,7 @@
       "alias": {
         "extensions": [".js", ".jsx", ".ts", ".tsx"],
         "map": [
-          ["@", "."],
+          ["@", "./src"],
           ["@components", "./src/components"],
           ["@pages", "./src/pages"],
           ["@services", "./src/services"],
@@ -20,7 +23,8 @@
           ["@styles", "./src/styles"],
           ["~hooks", "./src/common/hooks"],
           ["~features", "./src/features"],
-          ["~types", "./src/types"]
+          ["~types", "./src/types"],
+          ["~utils", "./src/common/utils"]
         ]
       }
     }
@@ -71,6 +75,10 @@
           },
           {
             "pattern": "~types/*",
+            "group": "internal"
+          },
+          {
+            "pattern": "~utils/*",
             "group": "internal"
           },
           {

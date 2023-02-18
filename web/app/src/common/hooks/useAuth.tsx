@@ -43,6 +43,7 @@ export const AuthProvider = ({ children }: Props) => {
     return new Promise<void>((resolve) => {
       AuthService.logout();
       setAuthenticated(false);
+      setUser({});
       resolve();
     });
   };

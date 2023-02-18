@@ -1,12 +1,7 @@
-import {
-  faAddressBook,
-  faHouseLaptop,
-  faSliders,
-  faTableColumns,
-  faTasks,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Box, Flex, Icon, Text } from "@chakra-ui/react";
 import { useState } from "react";
+import { BiBuildingHouse, BiColumns, BiFace, BiTask } from "react-icons/bi";
+
 import { Sidenav, SidenavItem } from "@components/sidenav";
 
 
@@ -17,45 +12,29 @@ const Sidebar = () => {
     setOpen((prevState) => !prevState);
   };
 
-  // <button
-  //   type="button"
-  //   aria-disabled={open}
-  //   disabled={open}
-  //   onClick={toggle}
-  //   className="text-white focus:outline-none m-1.5 rounded px-6 py-2 font-medium bg-gray-800"
-  // >
-  //   Click to open me
-  // </button>
-
   return (
-    <>
-      <Sidenav open={open} toggle={toggle}>
-        <div className="flex flex-col">
-          <div className="flex-auto">
-            <SidenavItem href="#">
-              <FontAwesomeIcon icon={faTableColumns} className="h-5" />
-              <span className="pl-2 text-sm">Dashboard</span>
-            </SidenavItem>
-            <SidenavItem href="#">
-              <FontAwesomeIcon icon={faHouseLaptop}  className="h-5" />
-              <span className="pl-2 text-sm">Projects</span>
-            </SidenavItem>
-            <SidenavItem href="#">
-              <FontAwesomeIcon icon={faTasks}  className="h-5" />
-              <span className="pl-2 text-sm">Tasks</span>
-            </SidenavItem>
-            <SidenavItem href="#">
-              <FontAwesomeIcon icon={faAddressBook}  className="h-5" />
-              <span className="pl-2 text-sm">Contacts</span>
-            </SidenavItem>
-          </div>
-          <SidenavItem href="#">
-            <FontAwesomeIcon icon={faSliders}  className="h-5" />
-            <span className="pl-2 text-sm">Settings</span>
+    <Sidenav open={open} toggle={toggle}>
+      <Flex direction="column">
+        <Box flex="auto">
+          <SidenavItem href="/">
+            <Icon boxSize="1.5em" as={BiColumns} />
+            <Text fontSize="sm" pl="8px">Dashboard</Text>
           </SidenavItem>
-        </div>
-      </Sidenav>
-    </>
+          <SidenavItem href="/contacts">
+            <Icon boxSize="1.5em" as={BiFace} />
+            <Text fontSize="sm" pl="8px">Contacts</Text>
+          </SidenavItem>
+          <SidenavItem href="/projects">
+            <Icon boxSize="1.5em" as={BiBuildingHouse} />
+            <Text fontSize="sm" pl="8px">Projects</Text>
+          </SidenavItem>
+          <SidenavItem href="/tasks">
+            <Icon boxSize="1.5em" as={BiTask} />
+            <Text fontSize="sm" pl="8px">Tasks</Text>
+          </SidenavItem>
+        </Box>
+      </Flex>
+    </Sidenav>
   );
 };
 

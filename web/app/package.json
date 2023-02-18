@@ -5,9 +5,13 @@
   "scripts": {
     "start": "yarn run graphql:codegen && node scripts/start.js",
     "build": "yarn run graphql:codegen && node scripts/build.js",
+    "restart": "overmind restart app --socket ../../.overmind.sock",
     "test": "node scripts/test.js",
     "lint": "eslint --fix src/",
-    "graphql:codegen": "graphql-codegen --config codegen.yml"
+    "graphql:codegen": "graphql-codegen --config codegen.yml",
+    "storybook:start": "start-storybook -p 6006",
+    "storybook:build": "build-storybook",
+    "storybook:restart": "overmind restart storybook --socket ../../.overmind.sock"
   },
   "dependencies": {
     "@animxyz/react": "^0.6.7",
@@ -17,6 +21,9 @@
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@material-tailwind/react": "^1.2.5",
+    "@nivo/calendar": "^0.80.0",
+    "@nivo/core": "^0.80.0",
+    "@nivo/funnel": "^0.80.0",
     "@reduxjs/toolkit": "^1.9.1",
     "axios": "^1.2.2",
     "classnames": "^2.3.2",
@@ -31,6 +38,11 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
+    "@chakra-ui/icons": "^2.0.17",
+    "@chakra-ui/react": "^2.4.9",
+    "@chakra-ui/storybook-addon": "^4.0.16",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
     "@graphql-codegen/cli": "2.16.3",
     "@graphql-codegen/client-preset": "1.2.5",
     "@graphql-codegen/introspection": "^2.2.3",
@@ -39,6 +51,15 @@
     "@graphql-codegen/typescript-operations": "^2.5.12",
     "@graphql-codegen/typescript-react-apollo": "^3.3.7",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
+    "@storybook/addon-actions": "^6.5.16",
+    "@storybook/addon-controls": "^6.5.16",
+    "@storybook/addon-essentials": "^6.5.16",
+    "@storybook/addon-interactions": "^6.5.16",
+    "@storybook/addon-links": "^6.5.16",
+    "@storybook/builder-webpack5": "^6.5.16",
+    "@storybook/manager-webpack5": "^6.5.16",
+    "@storybook/react": "^6.5.16",
+    "@storybook/testing-library": "^0.0.13",
     "@svgr/webpack": "^5.5.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
@@ -70,11 +91,13 @@
     "eslint-import-resolver-typescript": "^3.5.2",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-react": "^7.31.11",
+    "eslint-plugin-storybook": "^0.6.10",
     "eslint-webpack-plugin": "^3.1.1",
     "file-loader": "^6.2.0",
     "flowbite": "^1.6.0",
     "flowbite-react": "^0.3.7",
     "formik": "^2.2.9",
+    "framer-motion": "^9.0.2",
     "fs-extra": "^11.1.0",
     "graphql-tag": "^2.12.6",
     "html-webpack-plugin": "^5.5.0",
@@ -83,6 +106,8 @@
     "jest-resolve": "^27.4.2",
     "jest-watch-typeahead": "^1.0.0",
     "mini-css-extract-plugin": "^2.4.5",
+    "msw": "^1.0.1",
+    "msw-storybook-addon": "^1.7.0",
     "postcss": "^8.4.20",
     "postcss-cli": "^10.1.0",
     "postcss-flexbugs-fixes": "^5.0.2",
@@ -92,6 +117,7 @@
     "prompts": "^2.4.2",
     "react-app-polyfill": "^3.0.0",
     "react-dev-utils": "^12.0.1",
+    "react-icons": "^4.7.1",
     "resolve": "^1.20.0",
     "resolve-url-loader": "^4.0.0",
     "sass-loader": "^12.3.0",
@@ -178,5 +204,8 @@
     "presets": [
       "react-app"
     ]
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }
