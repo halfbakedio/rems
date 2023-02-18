@@ -1,8 +1,10 @@
-import { Box, chakra, Icon, SimpleGrid } from "@chakra-ui/react";
+import { Box, chakra, Flex, Icon, SimpleGrid } from "@chakra-ui/react";
+import { ResponsiveTimeRange } from "@nivo/calendar";
 import { ResponsiveFunnel } from "@nivo/funnel";
 import { BiBuildingHouse, BiMoney, BiUser } from "react-icons/bi";
 
 import { data } from "@/common/mocks/contact-funnel-data.js";
+import { data as calendarData } from "@/common/mocks/open-house-calendar-data.js";
 
 import { StatsCard } from "@components/card";
 import { Layout } from "@components/layout";
@@ -50,7 +52,7 @@ const AccountStatistics = () => {
 
 const IntakeFunnel = () => {
   return (
-    <Box maxW="8xl" h={"400px"} mx={"auto"} pt={4} px={{ base: 2, sm: 12, md: 17 }}>
+    <Box maxW="4xl" minW="2xl" h={"600px"} pt={4} px={{ base: 2, sm: 12, md: 17 }}>
       <chakra.h1
         textAlign={"left"}
         fontSize={"3xl"}
@@ -85,11 +87,51 @@ const IntakeFunnel = () => {
   );
 };
 
+const OpenHouseContacts = () => (
+  <Box maxW="4xl" minW="2xl" h={"600px"} pt={4} px={{ base: 2, sm: 12, md: 17 }}>
+      <chakra.h1
+        textAlign={"left"}
+        fontSize={"3xl"}
+        py={4}
+      >
+        Open house contacts generated
+      </chakra.h1>
+    <ResponsiveTimeRange
+      data={calendarData}
+      from="2018-04-01"
+      to="2018-08-12"
+      emptyColor="#eeeeee"
+      colors={["#61cdbb", "#97e3d5", "#e8c1a0", "#f47560"]}
+      margin={{ top: 40, right: 40, bottom: 100, left: 40 }}
+      dayBorderWidth={2}
+      dayBorderColor="#ffffff"
+      legends={[
+        {
+          anchor: "bottom-right",
+          direction: "row",
+          justify: false,
+          itemCount: 4,
+          itemWidth: 42,
+          itemHeight: 36,
+          itemsSpacing: 14,
+          itemDirection: "right-to-left",
+          translateX: -60,
+          translateY: -60,
+          symbolSize: 20,
+        },
+      ]}
+    />
+  </Box>
+);
+
 const Dashboard = () => {
   return (
     <Layout data-id="dashboard-layout">
       <AccountStatistics />
-      <IntakeFunnel />
+      <Flex direction={"row"} mx={"auto"} justifyContent="center">
+        <IntakeFunnel />
+        <OpenHouseContacts />
+      </Flex>
     </Layout>
   );
 };

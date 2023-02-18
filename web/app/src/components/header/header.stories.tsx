@@ -1,8 +1,8 @@
 import { ApolloProvider } from "@apollo/client";
 import { graphql } from "msw";
 
-import { Header } from "@components/header";
 import { graphqlClient } from "@/common/graphql";
+import { Header } from "@components/header";
 
 export default {
   title: "Components/Header",
