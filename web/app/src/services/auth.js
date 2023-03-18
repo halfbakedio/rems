@@ -1,19 +1,26 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5100/api/v1/users/";
+import { API_V1_URL } from "@/environment";
 
 const register = (username, email, password) => {
-  return axios.post(API_URL, {
-    username,
-    email,
-    password,
-  });
+  const endpoint = [API_V1_URL, "users"].join("/");
+
+  return axios.post(
+    endpoint,
+    {
+      username,
+      email,
+      password,
+    },
+  );
 };
 
 const login = async (email, password) => {
+  const endpoint = [API_V1_URL, "users", "login"].join("/");
+
   return axios
     .post(
-      API_URL + "login",
+      endpoint,
       {
         user: {
           email,
