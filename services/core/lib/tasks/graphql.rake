@@ -2,7 +2,7 @@ require "graphql/rake_task"
 require "rake"
 
 GraphQL::RakeTask.new(
-  load_schema: -> (_task) {
+  load_schema: lambda { |_task|
     require_relative "../../app/graphql/core_schema"
     CoreSchema
   },

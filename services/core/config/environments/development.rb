@@ -66,5 +66,11 @@ Rails.application.configure do
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
 
-  config.hosts << "app.dev.derptown.com"
+  config.hosts = [
+    IPAddr.new("0.0.0.0/0"),
+    IPAddr.new("::/0"),
+    "app.dev.derptown.com",
+    "host.docker.internal",
+    "localhost",
+  ]
 end
