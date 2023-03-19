@@ -1,0 +1,16 @@
+schema: ./schema.json
+documents: src/**/*.graphql
+extensions:
+  codegen:
+    overwrite: true
+    generates:
+      src/types/graphql/:
+        preset: client
+        plugins: []
+          # - typescript
+          # - typescript-operations
+          # - typescript-react-apollo
+          # - typescript-apollo-client-helpers
+      ./graphql.schema.json:
+        plugins:
+          - introspection

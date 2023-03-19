@@ -5,7 +5,9 @@ FROM node:16-alpine AS builder
 RUN apk add --no-cache libc6-compat
 
 WORKDIR /app
-COPY . .
+
+COPY ./web/app/ .
+COPY ./services/core/config/schema.json .
 
 RUN yarn install --frozen-lockfile
 RUN yarn build
@@ -22,6 +24,8 @@ RUN adduser --system --uid 1001 rems
 
 COPY --from=builder /app ./
 
+RUN yarn global add serve
+
 USER rems
 
-CMD ["yarn", "start", "--hostname", "::"]
+CMD ["serve", "-l", "::", "-s", "build"]
