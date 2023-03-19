@@ -5,3 +5,41 @@ prepare:
 deploy:
   summary: deploy application
   command: script/prod/deploy.sh
+
+deploy/all:
+  summary: deploy all components
+  command: |
+    robo -c {{ .robo.file }} deploy/api
+    robo -c {{ .robo.file }} deploy/app
+
+deploy/api:
+  summary: deploy the API gateway
+  command: |
+    fly deploy \
+      -a rems-api \
+      --local-only \
+      --dockerfile docker/Dockerfile.api
+
+deploy/app:
+  summary: deploy the web app
+  command: |
+    fly deploy \
+      -a rems-app \
+      --local-only \
+      --dockerfile docker/Dockerfile.app
+
+deploy/core:
+  summary: deploy the core backend
+  command: |
+    fly deploy \
+      -a rems-core \
+      --local-only \
+      --dockerfile docker/Dockerfile.core
+
+deploy/gh/app:
+  summary: deploy the web app from a Github action
+  command: |
+    fly deploy \
+      -a rems-app \
+      --remote-only \
+      --dockerfile docker/Dockerfile.app
