@@ -6,6 +6,8 @@
 
 services/tasks/tasks
 
+web/app/schema.json
+
 docs/diagrams/**/*.svg
 
 node_modules/

@@ -28,4 +28,4 @@ RUN yarn global add serve
 
 USER rems
 
-CMD ["serve", "-l", "::", "-s", "build"]
+CMD ["serve", "-l", "'tcp://[::]'", "-s", "build"]
