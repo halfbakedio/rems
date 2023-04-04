@@ -11,8 +11,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Deploy web application
+      - name: Fly
         uses: superfly/flyctl-actions/setup-flyctl@master
+
+      - name: Deploy web application
         run: |
           curl -sf https://gobinaries.com/tj/robo | sh
           robo prod deploy/gh/app
