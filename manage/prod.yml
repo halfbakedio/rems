@@ -31,10 +31,8 @@ deploy/app:
 deploy/core:
   summary: deploy the core backend
   command: |
-    flyctl deploy \
-      -a rems-core \
-      --local-only \
-      --dockerfile docker/Dockerfile.core
+    cd services/core
+    flyctl deploy
 
 deploy/gh/app:
   summary: deploy the web app from a Github action
