@@ -15,7 +15,7 @@ deploy/all:
 deploy/api:
   summary: deploy the API gateway
   command: |
-    fly deploy \
+    flyctl deploy \
       -a rems-api \
       --local-only \
       --dockerfile docker/Dockerfile.api
@@ -23,7 +23,7 @@ deploy/api:
 deploy/app:
   summary: deploy the web app
   command: |
-    fly deploy \
+    flyctl deploy \
       -a rems-app \
       --local-only \
       --dockerfile docker/Dockerfile.app
@@ -31,7 +31,7 @@ deploy/app:
 deploy/core:
   summary: deploy the core backend
   command: |
-    fly deploy \
+    flyctl deploy \
       -a rems-core \
       --local-only \
       --dockerfile docker/Dockerfile.core
@@ -39,7 +39,7 @@ deploy/core:
 deploy/gh/app:
   summary: deploy the web app from a Github action
   command: |
-    fly deploy \
+    flyctl deploy \
       -a rems-app \
       --remote-only \
       --dockerfile docker/Dockerfile.app
