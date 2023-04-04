@@ -6,6 +6,8 @@ RUN apk add --no-cache libc6-compat
 
 WORKDIR /app
 
+ENV NODE_ENV production
+
 COPY ./web/app/ .
 COPY ./services/core/config/schema.json .
 
