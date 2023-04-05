@@ -26,8 +26,8 @@ const ForkTsCheckerWebpackPlugin =
   process.env.TSC_COMPILE_ON_ERROR === "true"
     ? require("react-dev-utils/ForkTsCheckerWarningWebpackPlugin")
     : require("react-dev-utils/ForkTsCheckerWebpackPlugin");
-const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 
+const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 const createEnvironmentHash = require("./webpack/persistentCache/createEnvironmentHash");
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
@@ -66,7 +66,7 @@ const useTailwind = fs.existsSync(
 );
 
 // Get the path to the uncompiled service worker (if it exists).
-const {swSrc} = paths;
+const { swSrc } = paths;
 
 // style files regexes
 const cssRegex = /\.css$/;

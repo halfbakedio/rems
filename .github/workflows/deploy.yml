@@ -15,9 +15,15 @@ jobs:
       - name: Fly
         uses: superfly/flyctl-actions/setup-flyctl@master
 
+      - name: Install dependencies
+        run: curl -sf https://gobinaries.com/tj/robo | sh
+
+      - name: Deploy core service
+        run: robo prod deploy/core
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
       - name: Deploy web application
-        run: |
-          curl -sf https://gobinaries.com/tj/robo | sh
-          robo prod deploy/gh/app
+        run: robo prod deploy/app
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
