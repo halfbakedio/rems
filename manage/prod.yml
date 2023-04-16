@@ -11,35 +11,22 @@ deploy/all:
   command: |
     robo -c {{ .robo.file }} deploy/api
     robo -c {{ .robo.file }} deploy/app
+    robo -c {{ .robo.file }} deploy/core
 
 deploy/api:
   summary: deploy the API gateway
   command: |
-    fly deploy \
-      -a rems-api \
-      --local-only \
-      --dockerfile docker/Dockerfile.api
+    cd services/api
+    flyctl deploy
 
 deploy/app:
   summary: deploy the web app
   command: |
-    fly deploy \
-      -a rems-app \
-      --local-only \
-      --dockerfile docker/Dockerfile.app
+    cd web/app-next
+    flyctl deploy
 
 deploy/core:
   summary: deploy the core backend
   command: |
-    fly deploy \
-      -a rems-core \
-      --local-only \
-      --dockerfile docker/Dockerfile.core
-
-deploy/gh/app:
-  summary: deploy the web app from a Github action
-  command: |
-    fly deploy \
-      -a rems-app \
-      --remote-only \
-      --dockerfile docker/Dockerfile.app
+    cd services/core
+    flyctl deploy
