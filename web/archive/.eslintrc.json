@@ -1,0 +1,118 @@
+{
+  "globals": {
+    "localStorage": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/recommended",
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
+        "map": [
+          ["@", "./src"],
+          ["@components", "./src/components"],
+          ["@pages", "./src/pages"],
+          ["@services", "./src/services"],
+          ["@store", "./src/store"],
+          ["@styles", "./src/styles"],
+          ["~hooks", "./src/common/hooks"],
+          ["~features", "./src/features"],
+          ["~types", "./src/types"],
+          ["~utils", "./src/common/utils"]
+        ]
+      }
+    }
+  },
+  "ignorePatterns": [
+    "src/serviceWorker.ts",
+    "src/setupTests.ts"
+  ],
+  "rules": {
+    "array-bracket-spacing": "error",
+    "arrow-parens": ["error", "always"],
+    "comma-dangle": ["error", "always-multiline"],
+    "import/order": [
+      1, 
+      {
+        "groups": [
+          "external", 
+          "builtin", 
+          "internal", 
+          "sibling", 
+          "parent", 
+          "index"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "@components/*",
+            "group": "internal"
+          },
+          {
+            "pattern": "@pages/*",
+            "group": "internal"
+          },
+          {
+            "pattern": "@services/*",
+            "group": "internal"
+          },
+          {
+            "pattern": "@store/*",
+            "group": "internal"
+          },
+          {
+            "pattern": "~features/*",
+            "group": "internal"
+          },
+          {
+            "pattern": "~hooks/*",
+            "group": "internal"
+          },
+          {
+            "pattern": "~types/*",
+            "group": "internal"
+          },
+          {
+            "pattern": "~utils/*",
+            "group": "internal"
+          },
+          {
+            "pattern": "@styles/*",
+            "group": "internal",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": [
+          "internal"
+        ],
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      } 
+    ],
+    "no-console": ["error", { "allow": ["warn", "error"] }],
+    "prefer-destructuring": ["error", {"object": true, "array": false}],
+    "quotes": [
+      "error",
+      "double",
+      {
+        "avoidEscape": true,
+        "allowTemplateLiterals": true
+      }
+    ],
+    "semi": ["error", "always"],
+    "sort-imports": [
+      "error", 
+      { 
+        "ignoreCase": true, 
+        "ignoreDeclarationSort": true 
+      }
+    ]
+  }
+}
