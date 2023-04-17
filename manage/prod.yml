@@ -10,8 +10,8 @@ deploy/all:
   summary: deploy all components
   command: |
     robo -c {{ .robo.file }} deploy/api
+    robo -c {{ .robo.file }} deploy/admin
     robo -c {{ .robo.file }} deploy/app
-    robo -c {{ .robo.file }} deploy/core
 
 deploy/api:
   summary: deploy the API gateway
@@ -22,7 +22,7 @@ deploy/api:
 deploy/app:
   summary: deploy the web app
   command: |
-    cd web/app-next
+    cd web/app
     flyctl deploy
 
 deploy/admin:
