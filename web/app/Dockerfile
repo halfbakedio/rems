@@ -6,7 +6,6 @@ COPY . .
 RUN yarn install --frozen-lockfile
 
 ENV NEXT_TELEMETRY_DISABLED 1
-ARG NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
 
 RUN yarn build
 
