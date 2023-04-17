@@ -25,6 +25,12 @@ deploy/app:
     cd web/app-next
     flyctl deploy
 
+deploy/admin:
+  summary: deploy the admin service
+  command: |
+    cd services/admin
+    flyctl deploy
+
 deploy/core:
   summary: deploy the core backend
   command: |
