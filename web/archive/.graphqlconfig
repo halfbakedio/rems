@@ -1,7 +1,0 @@
-{
-  "schemaPath": "../../services/core/config/schema.json",
-  "includes": ["src/**/*.graphql", "src/**/*.gql"],
-  "extensions": {
-    "schemaTypesPath": "src/types/graphql"
-  }
-}
