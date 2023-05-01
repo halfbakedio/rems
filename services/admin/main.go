@@ -24,7 +24,7 @@ func main() {
 		panic(err)
 	}
 
-	injectSession := clerk.WithSession(client)
+	injectWithSession := clerk.WithSession(client)
 
 	r := chi.NewRouter()
 
@@ -43,10 +43,11 @@ func main() {
 		MaxAge:           300,
 	}))
 
+	r.Use(injectWithSession)
 	r.Use(ClerkContext)
 
-	r.Get("/me", injectSession(user.Me()).(http.HandlerFunc))
-	r.Mount("/users", user.Router(injectSession))
+	r.Get("/me", user.Me())
+	r.Mount("/users", user.Router())
 
 	host := getEnv("ADMIN_HOST", "")
 	port := getEnv("ADMIN_PORT", "4001")

@@ -15,3 +15,16 @@ if __cmd_check "$GO_BIN"/air; then
   go install github.com/cosmtrek/air@latest
 fi
 
+if __cmd_check "$GO_BIN"/pop; then
+  go install github.com/gobuffalo/pop/v6/soda@latest
+fi
+
+if __cmd_check "$GO_BIN"/grift; then
+  go install github.com/gobuffalo/grift@latest
+fi
+
+# create databases
+pushd services/properties
+soda create -e development
+soda create -e test
+popd

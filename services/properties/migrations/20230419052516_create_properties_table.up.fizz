@@ -1,0 +1,6 @@
+create_table("properties") {
+  t.Column("id", "integer", {primary: true})
+  t.Column("user_id", "string", {})
+  t.Column("org_id", "string", {})
+  t.Column("image_uri", "text", {"null": true})
+}

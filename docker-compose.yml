@@ -26,21 +26,21 @@ services:
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
-      - POSTGRES_MULTIPLE_DATABASES=tasks_dev,tasks_test,core_development,core_test
+      # - POSTGRES_MULTIPLE_DATABASES=properties_dev,properties_test,tasks_dev,tasks_test
     ports:
       - "5432:5432"
     volumes:
       - pg_data:/var/lib/postgres/data
-      - ./script/dev/pg-init:/docker-entrypoint-initdb.d
+      # - ./script/dev/pg-init:/docker-entrypoint-initdb.d
 
-  jwt_revoke:
-    build:
-      context: services/jwt-revoker
-    ports:
-      - "9000:8080"
-    depends_on:
-      - api
-    restart: always
+  # jwt_revoke:
+  #   build:
+  #     context: services/jwt-revoker
+  #   ports:
+  #     - "9000:8080"
+  #   depends_on:
+  #     - api
+  #   restart: always
 
 volumes:
   pg_data:

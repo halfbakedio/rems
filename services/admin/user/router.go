@@ -6,18 +6,18 @@ import (
 	"github.com/go-chi/chi/v5"
 )
 
-func Router(session func(http.Handler) http.Handler) chi.Router {
+func Router() chi.Router {
 	r := chi.NewRouter()
 
-	r.With(paginate).Get("/", session(List()).(http.HandlerFunc))
-	r.Post("/", session(Create()).(http.HandlerFunc))
-	r.Get("/roles", session(Roles()).(http.HandlerFunc))
-	r.Get("/search", session(Search()).(http.HandlerFunc))
+	r.With(paginate).Get("/", List())
+	r.Post("/", Create())
+	r.Get("/roles", Roles())
+	r.Get("/search", Search())
 	r.Route("/{userID}", func(r chi.Router) {
 		r.Use(Context)
-		r.Get("/", session(Get()).(http.HandlerFunc))
-		r.Put("/", session(Update()).(http.HandlerFunc))
-		r.Delete("/", session(Delete()).(http.HandlerFunc))
+		r.Get("/", Get())
+		r.Put("/", Update())
+		r.Delete("/", Delete())
 	})
 
 	return r

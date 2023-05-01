@@ -5,6 +5,7 @@
 .env
 
 services/admin/admin
+services/properties/properties
 services/tasks/tasks
 
 web/app/schema.json

@@ -72,13 +72,14 @@ const Main = () => (
     </div>
 
     <SignedIn>
-      <AdminAPIRequest endpoint="me" />
-      <AdminAPIRequest endpoint="users" />
+      <APIRequest service="admin" endpoint="me" />
+      <APIRequest service="admin" endpoint="users" />
+      <APIRequest service="properties" endpoint="properties" />
     </SignedIn>
   </main>
 );
 
-const AdminAPIRequest = ({ endpoint }) => {
+const APIRequest = ({ service, endpoint }) => {
   React.useEffect(() => {
     if (window.Prism) {
       window.Prism.highlightAll();
@@ -94,7 +95,7 @@ const AdminAPIRequest = ({ endpoint }) => {
     setResponse("// Loading...");
 
     try {
-      const res = await fetch(`/api/admin/${endpoint}`, {
+      const res = await fetch(`/api/${service}/${endpoint}`, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -110,13 +111,13 @@ const AdminAPIRequest = ({ endpoint }) => {
 
   return (
     <div className={styles.backend}>
-      <h2>Admin API Request to {`/admin/${endpoint}`}</h2>
+      <h2>API Request to {`/${service}/${endpoint}`}</h2>
       <div className={styles.card}>
         <button target="_blank" rel="noopener" className={styles.cardContent} onClick={() => makeRequest()}>
           <Image src="/icons/server.svg" width="32" height="32" alt="Server" />
           <div>
-            <h3>fetch(&apos;/admin/{endpoint}&apos;)</h3>
-            <p>Retrieve the {endpoint} information from the Admin API</p>
+            <h3>fetch(&apos;/{service}/{endpoint}&apos;)</h3>
+            <p>Retrieve the {endpoint} information from the {service} API</p>
           </div>
           <div className={styles.arrow}>
             <Image src="/icons/download.svg" width="32" height="32" alt="Download" />

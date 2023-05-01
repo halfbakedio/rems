@@ -13,6 +13,11 @@ module.exports = (phase) => {
       if (isProd) return "http://top2.nearest.of.rems-admin.internal:8080";
       return "ADMIN_HOST:not (isDev,isProd)";
     })(),
+    PROPERTIES_HOST: (() => {
+      if (isDev) return "http://localhost:4002";
+      if (isProd) return "http://top2.nearest.of.rems-properties.internal:8080";
+      return "PROPERTIES_HOST:not (isDev,isProd)";
+    })(),
   };
 
   return {
@@ -22,6 +27,10 @@ module.exports = (phase) => {
         {
           source: "/api/admin/:path*",
           destination: `${env.ADMIN_HOST}/:path*`,
+        },
+        {
+          source: "/api/properties/:path*",
+          destination: `${env.PROPERTIES_HOST}/:path*`,
         },
       ];
     },

@@ -1,0 +1,4 @@
+db:
+  summary: connect to the database
+  exec: psql -U postgres -h 127.0.0.1 -d properties_development
+  env: ["PGPASSWORD=postgres"]

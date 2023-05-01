@@ -1,0 +1,13 @@
+create_table("addresses") {
+  t.Column("id", "integer", {primary: true})
+  t.Column("property_id", "integer", {})
+  t.Column("address1", "string", {"null": true})
+  t.Column("address2", "string", {"null": true})
+  t.Column("address3", "string", {"null": true})
+  t.Column("city", "string", {"null": true})
+  t.Column("state", "string", {"null": true})
+  t.Column("country", "string", {"null": true})
+  t.Column("zip_code", "string", {"null": true})
+
+  t.ForeignKey("property_id", {"properties": ["id"]}, {"on_delete": "cascade"})
+}
