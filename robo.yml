@@ -5,3 +5,9 @@ dev:
 prod:
   summary: production commands
   exec: robo --config {{ .robo.path }}/manage/prod.yml
+
+# services
+
+properties:
+  summary: property service commands
+  exec: robo --config {{ .robo.path }}/services/properties/robo.yml

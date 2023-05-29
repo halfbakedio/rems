@@ -15,9 +15,4 @@ test:
   pool: 5
 
 production:
-  dialect: postgres
-  database: properties_production
-  user: {{envOr "PROPERTIES_DB_USER" "postgres"}}
-  password: {{envOr "PROPERTIES_DB_PASS" "postgres"}}
-  host: {{envOr "PROPERTIES_DB_HOST" "127.0.0.1"}}
-  pool: 5
+  url: {{envOr "PROPERTIES_DB_URL" "postgres://postgres:postgres@127.0.0.1:5432/properties_production"}}

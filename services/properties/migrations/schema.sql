@@ -64,13 +64,89 @@ ALTER SEQUENCE public.addresses_id_seq OWNED BY public.addresses.id;
 
 
 --
+-- Name: listings; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.listings (
+    id integer NOT NULL,
+    user_id character varying(255) NOT NULL,
+    organization_id character varying(255) NOT NULL,
+    property_id integer NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.listings OWNER TO postgres;
+
+--
+-- Name: listings_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.listings_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.listings_id_seq OWNER TO postgres;
+
+--
+-- Name: listings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.listings_id_seq OWNED BY public.listings.id;
+
+
+--
+-- Name: open_houses; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.open_houses (
+    id integer NOT NULL,
+    user_id character varying(255) NOT NULL,
+    organization_id character varying(255) NOT NULL,
+    listing_id integer NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.open_houses OWNER TO postgres;
+
+--
+-- Name: open_houses_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.open_houses_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.open_houses_id_seq OWNER TO postgres;
+
+--
+-- Name: open_houses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.open_houses_id_seq OWNED BY public.open_houses.id;
+
+
+--
 -- Name: properties; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.properties (
     id integer NOT NULL,
     user_id character varying(255) NOT NULL,
-    org_id character varying(255) NOT NULL,
+    organization_id character varying(255) NOT NULL,
     image_uri text,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
@@ -159,6 +235,20 @@ ALTER TABLE ONLY public.addresses ALTER COLUMN id SET DEFAULT nextval('public.ad
 
 
 --
+-- Name: listings id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.listings ALTER COLUMN id SET DEFAULT nextval('public.listings_id_seq'::regclass);
+
+
+--
+-- Name: open_houses id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.open_houses ALTER COLUMN id SET DEFAULT nextval('public.open_houses_id_seq'::regclass);
+
+
+--
 -- Name: properties id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -178,6 +268,22 @@ ALTER TABLE ONLY public.tokens ALTER COLUMN id SET DEFAULT nextval('public.token
 
 ALTER TABLE ONLY public.addresses
     ADD CONSTRAINT addresses_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: listings listings_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.listings
+    ADD CONSTRAINT listings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: open_houses open_houses_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.open_houses
+    ADD CONSTRAINT open_houses_pkey PRIMARY KEY (id);
 
 
 --
@@ -217,6 +323,22 @@ CREATE UNIQUE INDEX schema_migration_version_idx ON public.schema_migration USIN
 
 ALTER TABLE ONLY public.addresses
     ADD CONSTRAINT addresses_property_id_fkey FOREIGN KEY (property_id) REFERENCES public.properties(id) ON DELETE CASCADE;
+
+
+--
+-- Name: listings listings_property_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.listings
+    ADD CONSTRAINT listings_property_id_fkey FOREIGN KEY (property_id) REFERENCES public.properties(id) ON DELETE CASCADE;
+
+
+--
+-- Name: open_houses open_houses_listing_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.open_houses
+    ADD CONSTRAINT open_houses_listing_id_fkey FOREIGN KEY (listing_id) REFERENCES public.listings(id) ON DELETE CASCADE;
 
 
 --

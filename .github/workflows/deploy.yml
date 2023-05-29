@@ -26,6 +26,9 @@ jobs:
       - name: Deploy admin service
         run: robo prod deploy/admin
 
+      - name: Deploy properties service
+        run: robo prod deploy/properties
+
       - name: Deploy web application
         run: |
           cd web/app

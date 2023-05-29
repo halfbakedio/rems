@@ -1,0 +1,23 @@
+{
+  "properties": [
+    {
+      "user_id": "{{ .UserID }}",
+      "organization_id": "{{ .OrganizationID }}",
+      "image_uri": "https://example.com/image.png",
+      "listings": [
+        {
+          "user_id": "{{ .UserID }}",
+          "organization_id": "{{ .OrganizationID }}",
+          "open_houses": [
+            {
+              "user_id": "{{ .UserID }}",
+              "organization_id": "{{ .OrganizationID }}",
+              "start_date": "2019-01-01T00:00:00Z",
+              "end_date": "2019-01-01T00:00:00Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -31,8 +31,8 @@ deploy/admin:
     cd services/admin
     flyctl deploy
 
-deploy/core:
-  summary: deploy the core backend
+deploy/properties:
+  summary: deploy the properties service
   command: |
-    cd services/core
+    cd services/properties
     flyctl deploy

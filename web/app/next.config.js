@@ -32,6 +32,10 @@ module.exports = (phase) => {
           source: "/api/properties/:path*",
           destination: `${env.PROPERTIES_HOST}/:path*`,
         },
+        {
+          source: "/api/public/open-houses/:id",
+          destination: `${env.PROPERTIES_HOST}/public/open-houses/:id`,
+        },
       ];
     },
   };

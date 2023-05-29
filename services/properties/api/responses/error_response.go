@@ -22,20 +22,35 @@ func (e *ErrResponse) Render(w http.ResponseWriter, r *http.Request) error {
 	return nil
 }
 
-func ErrInvalidRequest(err error) render.Renderer {
+// ErrRead is a helper function to handle read errors
+func ErrRead(err error) render.Renderer {
 	return &ErrResponse{
 		Err:            err,
-		HTTPStatusCode: 400,
-		StatusText:     "Invalid request.",
+		HTTPStatusCode: http.StatusNotFound,
+		StatusText:     "Error reading resource.",
+		AppCode:        0,
 		ErrorText:      err.Error(),
 	}
 }
 
+// ErrInvalidRequest is a helper function to handle invalid request errors
+func ErrInvalidRequest(err error) render.Renderer {
+	return &ErrResponse{
+		Err:            err,
+		HTTPStatusCode: http.StatusBadRequest,
+		StatusText:     "Invalid request.",
+		AppCode:        0,
+		ErrorText:      err.Error(),
+	}
+}
+
+// ErrRender is a helper function to handle render errors
 func ErrRender(err error) render.Renderer {
 	return &ErrResponse{
 		Err:            err,
-		HTTPStatusCode: 422,
+		HTTPStatusCode: http.StatusUnprocessableEntity,
 		StatusText:     "Error rendering response.",
+		AppCode:        0,
 		ErrorText:      err.Error(),
 	}
 }

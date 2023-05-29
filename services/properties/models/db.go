@@ -23,3 +23,17 @@ func init() {
 
 	pop.Debug = env == "development"
 }
+
+// ByUser scopes a query to a user
+func ByUser(userId string) pop.ScopeFunc {
+	return func(q *pop.Query) *pop.Query {
+		return q.Where("user_id = ?", userId)
+	}
+}
+
+// ByOrganization scopes a query to an organization
+func ByOrganization(organizationId string) pop.ScopeFunc {
+	return func(q *pop.Query) *pop.Query {
+		return q.Where("organization_id = ?", organizationId)
+	}
+}
