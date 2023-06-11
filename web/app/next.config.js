@@ -13,6 +13,11 @@ module.exports = (phase) => {
       if (isProd) return "http://top2.nearest.of.rems-admin.internal:8080";
       return "ADMIN_HOST:not (isDev,isProd)";
     })(),
+    CORE_HOST: (() => {
+      if (isDev) return "http://localhost:5100";
+      if (isProd) return "http://top2.nearest.of.rems-core.internal:8080";
+      return "CORE_HOST:not (isDev,isProd)";
+    })(),
     PROPERTIES_HOST: (() => {
       if (isDev) return "http://localhost:4002";
       if (isProd) return "http://top2.nearest.of.rems-properties.internal:8080";
@@ -35,6 +40,18 @@ module.exports = (phase) => {
         {
           source: "/api/public/open-houses/:id",
           destination: `${env.PROPERTIES_HOST}/public/open-houses/:id`,
+        },
+        {
+          source: "/api/v2/graphql",
+          destination: `${env.CORE_HOST}/api/v2/graphql`,
+        },
+        {
+          source: "/api/v2/graphiql",
+          destination: `${env.CORE_HOST}/api/v2/graphiql`,
+        },
+        {
+          source: "/assets/graphiql/:path*",
+          destination: `${env.CORE_HOST}/assets/graphiql/:path*`,
         },
       ];
     },

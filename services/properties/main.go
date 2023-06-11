@@ -52,7 +52,7 @@ func main() {
 }
 
 func protectedRouter() *chi.Mux {
-	apiKey := os.Getenv("CLERK_SECRET_KEY")
+	apiKey := os.Getenv("CLERK_API_KEY")
 
 	client, err := clerk.NewClient(apiKey)
 	if err != nil {

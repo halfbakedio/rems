@@ -31,7 +31,7 @@ func Clerk(next http.Handler) http.Handler {
 		var organization *clerk.Organization
 		var err error
 
-		apiKey := os.Getenv("CLERK_SECRET_KEY")
+		apiKey := os.Getenv("CLERK_API_KEY")
 
 		if client, err = clerk.NewClient(apiKey); err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
