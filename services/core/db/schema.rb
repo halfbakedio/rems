@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_04_191757) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_11_193828) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -53,6 +53,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_04_191757) do
     t.datetime "updated_at", null: false
     t.string "user_id", limit: 64
     t.string "organization_id", limit: 64
+  end
+
+  create_table "tokens", force: :cascade do |t|
+    t.string "user_id", null: false
+    t.string "hash", null: false
+    t.datetime "expires_at", default: "2023-06-25 20:29:59"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "listings", "properties"

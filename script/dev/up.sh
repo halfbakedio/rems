@@ -5,7 +5,7 @@ PROJECT_DIR="${SCRIPT_DIR}/../.."
 COMPOSE_FILES="-f ${PROJECT_DIR}/docker-compose.yml"
 CONTAINERS="db"
 DOCKER_HOST_IP=""
-OVERMIND_SERVICES="app,admin,properties"
+OVERMIND_SERVICES="app,admin,core,properties"
 
 DOCKER_HOST_IP=${DOCKER_HOST_IP} \
   docker compose ${COMPOSE_FILES} up -d ${CONTAINERS}

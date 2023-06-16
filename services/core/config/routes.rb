@@ -8,9 +8,6 @@ Rails.application.routes.draw do
   end
 
   concern :api_base do
-    resource :user, only: %i[show update]
-    resources :agents
-    resources :contacts
     resources :open_houses, only: %i[show index]
   end
 
