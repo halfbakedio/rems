@@ -344,4 +344,3 @@ ALTER TABLE ONLY public.open_houses
 --
 -- PostgreSQL database dump complete
 --
-

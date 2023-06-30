@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   end
 
   concern :api_base do
-    resources :open_houses, only: %i[show index]
+    resources :open_houses, path: "/open-houses", only: %i[show index]
+    resources :properties, only: %i[show index]
   end
 
   namespace :api do

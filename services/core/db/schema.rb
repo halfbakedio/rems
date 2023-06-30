@@ -57,8 +57,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_11_193828) do
 
   create_table "tokens", force: :cascade do |t|
     t.string "user_id", null: false
-    t.string "hash", null: false
-    t.datetime "expires_at", default: "2023-06-25 20:29:59"
+    t.string "uuid", null: false
+    t.string "token_hash", null: false
+    t.datetime "expires_at", default: "2023-07-01 19:08:35"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -9,6 +9,9 @@ require "sprockets/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+# Require any middleware in lib
+Dir[File.join(__dir__, "../lib/middleware/**/*.rb")].each { |f| require f }
+
 module Core
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
@@ -22,7 +25,9 @@ module Core
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
+    # TODO: revisit these, GraphQL needed/needs it
     config.session_store :cookie_store, key: "_interslice_session"
+
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use config.session_store, config.session_options
 
@@ -31,6 +36,10 @@ module Core
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
+    # application middleware
+    config.middleware.insert_before 0, Middleware::ClerkSession
+
+    # setup generators to use rspec and skip auto-generated specs
     config.generators do |g|
       g.test_framework :rspec
       g.helper_specs false

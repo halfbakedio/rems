@@ -298,6 +298,7 @@ DEPENDENCIES
   dry-struct (~> 1.6)
   factory_bot_rails
   faker
+  faraday (~> 1.4)
   graphiql-rails
   graphql
   jbuilder

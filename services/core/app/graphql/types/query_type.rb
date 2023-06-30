@@ -69,7 +69,7 @@ module Types
       #     id: Assignment.where(role_id: role_id).select(:user_id)
       #   )
       # else
-        policy_scope(User)
+      policy_scope(User)
       # end
     end
 

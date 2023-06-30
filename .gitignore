@@ -10,6 +10,11 @@ services/tasks/tasks
 
 web/app/schema.json
 
+docs/.obsidian/app.json
+docs/.obsidian/appearance.json
+docs/.obsidian/core-plugins-migration.json
+docs/.obsidian/core-plugins.json
+docs/.obsidian/hotkeys.json
 docs/diagrams/**/*.svg
 
 node_modules/

@@ -4,6 +4,10 @@ require:
 AllCops:
   DisplayCopNames: true
   NewCops: enable
+  Exclude:
+    - "bin/**/*"
+    - "db/migrate/**/*"
+    - "db/schema.rb"
 
 Lint/MissingCopEnableDirective:
   Enabled: false
@@ -48,6 +52,12 @@ Style/TrailingCommaInArrayLiteral:
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
+
+Metrics/BlockLength:
+  Exclude:
+    - "Rakefile"
+    - "**/*.rake"
+    - "spec/**/*.rb"
 
 Metrics/MethodLength:
   Enabled: false

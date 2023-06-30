@@ -38,20 +38,12 @@ module.exports = (phase) => {
           destination: `${env.PROPERTIES_HOST}/:path*`,
         },
         {
+          source: "/api/core/:path*",
+          destination: `${env.CORE_HOST}/api/v1/:path*`,
+        },
+        {
           source: "/api/public/open-houses/:id",
-          destination: `${env.PROPERTIES_HOST}/public/open-houses/:id`,
-        },
-        {
-          source: "/api/v2/graphql",
-          destination: `${env.CORE_HOST}/api/v2/graphql`,
-        },
-        {
-          source: "/api/v2/graphiql",
-          destination: `${env.CORE_HOST}/api/v2/graphiql`,
-        },
-        {
-          source: "/assets/graphiql/:path*",
-          destination: `${env.CORE_HOST}/assets/graphiql/:path*`,
+          destination: `${env.CORE_HOST}/api/v1/open-houses/:id`,
         },
       ];
     },
