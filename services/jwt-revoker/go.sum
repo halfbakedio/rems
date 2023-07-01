@@ -14,5 +14,5 @@ github.com/tmthrgd/go-memset v0.0.0-20180828131805-6f4e59bf1e1d h1:gj9wtJOyhdRQ5
 github.com/tmthrgd/go-memset v0.0.0-20180828131805-6f4e59bf1e1d/go.mod h1:xUkvcKF3VBDKFmmqCtW333lognWBHzSScj4fgjVB0Ek=
 github.com/tmthrgd/go-popcount v0.0.0-20180111143836-3918361d3e97 h1:dOZJr7CPLi1ud2U6BZWk+vtUFFzMPbKcZw6t1WxreDM=
 github.com/tmthrgd/go-popcount v0.0.0-20180111143836-3918361d3e97/go.mod h1:FcUQfrsAsSSqM3n9xf4EtPzB8tWzt58/y0AV+wNNM8Q=
-golang.org/x/sys v0.0.0-20211004093028-2c5d950f24ef h1:fPxZ3Umkct3LZ8gK9nbk+DWDJ9fstZa2grBn+lWVKPs=
-golang.org/x/sys v0.0.0-20211004093028-2c5d950f24ef/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
+golang.org/x/sys v0.1.0 h1:kunALQeHf1/185U1i0GOB/fy1IPRDDpuoOOqRReG57U=
+golang.org/x/sys v0.1.0/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
