@@ -7,7 +7,9 @@ RUN yarn install --frozen-lockfile
 
 ENV NEXT_TELEMETRY_DISABLED 1
 
-RUN yarn build
+RUN --mount=type=secret,id=clerk_publishable_key \
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY="$(cat /run/secrets/clerk_publishable_key)" \
+    yarn build
 
 FROM node:16-alpine AS runner
 WORKDIR /app

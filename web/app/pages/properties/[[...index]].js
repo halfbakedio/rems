@@ -101,6 +101,7 @@ const PropertiesPage = () => {
       setContextMenu([]);
       setContextActions([]);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setContext, setContextMenu, setContextActions]);
 
   return (

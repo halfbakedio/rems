@@ -31,6 +31,12 @@ deploy/admin:
     cd services/admin
     flyctl deploy
 
+deploy/core:
+  summary: deploy the core service
+  command: |
+    cd services/core
+    flyctl deploy --build-secret clerk_publishable_key=$(cat ./secrets/clerk_publishable_key)
+
 deploy/properties:
   summary: deploy the properties service
   command: |

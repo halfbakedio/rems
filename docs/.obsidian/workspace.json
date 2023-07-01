@@ -4,35 +4,18 @@
     "type": "split",
     "children": [
       {
-        "id": "1d367fa7feffdd0a",
+        "id": "c1f5e255391097a0",
         "type": "tabs",
         "children": [
           {
-            "id": "2d7104bcf47195b0",
+            "id": "8e6184f2e009dc41",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "README.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "2cc951c9e3d0e1e4",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "concept/Construction Management.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -98,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "concept/Construction Management.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "concept/Construction Management.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -137,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "concept/Construction Management.md"
-              }
+              "state": {}
             }
           }
         ]
@@ -159,12 +138,12 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "2cc951c9e3d0e1e4",
+  "active": "8e6184f2e009dc41",
   "lastOpenFiles": [
+    "README.md",
     "concept/Real Estate Management.md",
     "concept/Construction Management.md",
     "concept",
-    "README.md",
     "diagrams/properties.svg"
   ]
 }

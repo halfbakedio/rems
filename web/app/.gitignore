@@ -12,6 +12,9 @@
 /.next/
 /out/
 
+# support secrets in fly builds
+secrets/
+
 # production
 /build
 
