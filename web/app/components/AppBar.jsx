@@ -5,11 +5,11 @@ import { useApplication } from "@/lib/store/hooks";
 
 const AppBarButton = ({ label }) => (
   <Button
-    bg="green.800"
+    bg="blue.700"
     h="64px"
     borderRadius={0}
     _hover={{
-      bg: "green.700",
+      bg: "blue.600",
       borderLeft: "2px",
     }}
   >
@@ -25,10 +25,10 @@ const AppBar = () => {
       {contextMenu && contextMenu.length > 0 && (
         <Box
           id="app-bar"
-          bg="green.800"
+          bg="blue.700"
           color="gray.100"
           borderRight="2px"
-          borderRightColor="green.900"
+          borderRightColor="blue.800"
           w="192px"
           left={0}
           top={0}

@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { CgChart, CgOrganisation, CgTemplate } from "react-icons/cg";
-import { FiSettings } from "react-icons/fi";
+import { CgBoard, CgChart, CgOptions, CgOrganisation } from "react-icons/cg";
 import { Box, Center, Flex, IconButton, Spacer } from "@chakra-ui/react";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
@@ -18,7 +17,7 @@ const AppRailButton = ({ label, icon, path }) => (
       icon={icon}
       fontSize="24px"
       _hover={{
-        bg: "green.800",
+        bg: "blue.700",
         borderLeft: "2px",
       }}
     />
@@ -28,7 +27,7 @@ const AppRailButton = ({ label, icon, path }) => (
 const AppRail = () => (
   <Box
     id="app-rail"
-    bg="green.900"
+    bg="blue.800"
     color="gray.100"
     // boxShadow="0 0 2px 2px rgba(0, 0, 0, 0.2)"
     w="64px"
@@ -49,11 +48,11 @@ const AppRail = () => (
         <Link href="/sign-in">Sign in</Link>
       </SignedOut>
       <SignedIn>
-        <AppRailButton label="Dashboard" icon={<CgTemplate />} path="/" />
+        <AppRailButton label="Dashboard" icon={<CgBoard />} path="/" />
         <AppRailButton label="Properties" icon={<CgOrganisation />} path="/properties" />
         <AppRailButton label="Reports" icon={<CgChart />} path="/reports" />
         <Spacer />
-        <AppRailButton label="Settings" icon={<FiSettings />} path="/settings" />
+        <AppRailButton label="Settings" icon={<CgOptions />} path="/settings" />
         <Center h="64px" w="64px">
           <UserButton
             userProfileMode="navigation"

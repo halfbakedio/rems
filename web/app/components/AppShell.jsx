@@ -1,8 +1,5 @@
-import { Flex, useDisclosure } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import propTypes from "prop-types";
-import { useEffect } from "react";
-
-import { useDrawer } from "@/lib/store/hooks";
 
 import AppBar from "./AppBar";
 import AppContent from "./AppContent";
@@ -10,17 +7,6 @@ import AppDrawer from "./AppDrawer";
 import AppRail from "./AppRail";
 
 const AppShell = ({ children, showRail, showBar }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  // const { setIsOpen, setOnOpen, setOnClose } = useDrawer();
-  const { setOnOpen } = useDrawer();
-
-  useEffect(() => {
-    // setIsOpen(isOpen);
-    setOnOpen(onOpen);
-    // setOnClose(onClose);
-  // }, [isOpen, onOpen, onClose, setIsOpen, setOnOpen, setOnClose]);
-  }, [onOpen, setOnOpen]);
-
   return (
     <Flex>
       {showRail && <AppRail />}
@@ -28,7 +14,7 @@ const AppShell = ({ children, showRail, showBar }) => {
       <AppContent>
         {children}
       </AppContent>
-      <AppDrawer isOpen={isOpen} onClose={onClose} />
+      <AppDrawer />
     </Flex>
   );
 };

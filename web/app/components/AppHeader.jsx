@@ -32,7 +32,15 @@ const AppHeader = () => {
   }, [context]);
 
   return (
-    <Center h="64px" color="gray.600">
+    <Center
+      h="64px"
+      w="full"
+      color="gray.600"
+      borderBottom="1px"
+      borderColor="gray.100"
+      boxShadow="0 1px 5px rgba(0, 0, 0, 0.1)"
+      bg="rgba(255, 255, 255, 0.9)"
+    >
       <Flex w="100%" px={3}>
         <Center>
           <Heading size="sm" mx={3}>{title}</Heading>
@@ -49,9 +57,15 @@ const AppHeader = () => {
             borderLeftRadius="lg"
             borderRightRadius={0}
             borderRightWidth={0}
-            // boxShadow="0 1px 5px rgba(0, 0, 0, 0.1)"
+            borderColor="blue.800"
+            bg="blue.200"
+            boxShadow="0 1px 5px rgba(0, 0, 0, 0.1)"
             px={2}
             w={24}
+            _hover={{
+              color: "gray.50",
+              bg: "blue.700",
+            }}
           >
             Action
           </Button>
@@ -62,7 +76,13 @@ const AppHeader = () => {
               icon={<FiChevronDown />}
               variant="outline"
               borderLeftRadius={0}
-              // boxShadow="0 1px 5px rgba(0, 0, 0, 0.1)"
+              borderColor="blue.800"
+              bg="blue.200"
+              boxShadow="0 1px 5px rgba(0, 0, 0, 0.1)"
+              _hover={{
+                color: "gray.50",
+                bg: "blue.700",
+              }}
             />
             <MenuList>
               <MenuGroup title="Global">

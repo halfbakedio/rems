@@ -15,7 +15,11 @@ import Layout from "@/components/layouts/App";
 import { useApplication, useDrawer, useProperties } from "@/lib/store/hooks";
 
 const PropertyRow = ({ property }) => (
-  <Box w="100%" p={2}>
+  <Box
+    w="100%"
+    p={4}
+    _hover={{ bg: "blue.100" }}
+  >
     <Flex>
       <VStack alignItems="start">
         <Heading size="sm">Address</Heading>{property.address}
@@ -29,7 +33,7 @@ const PropertyRow = ({ property }) => (
         borderRadius="0"
         _hover={{
           borderWidth: "1px",
-          bg: "green.200",
+          bg: "blue.200",
         }}
       />
       <IconButton
@@ -39,7 +43,7 @@ const PropertyRow = ({ property }) => (
         borderRadius="0"
         _hover={{
           borderWidth: "1px",
-          bg: "green.100",
+          bg: "blue.200",
         }}
       />
     </Flex>
@@ -50,8 +54,10 @@ const PropertyList = ({ properties }) => (
   <Box
     borderWidth="1px"
     borderRadius="md"
+    borderColor="gray.100"
     h="100%"
-    // boxShadow="0 1px 5px rgba(0, 0, 0, 0.1)"
+    m={4}
+    boxShadow="0 1px 5px rgba(0, 0, 0, 0.1)"
   >
     {properties.map((property) => (
       <PropertyRow key={property.id} property={property} />
@@ -67,17 +73,13 @@ const PropertiesPage = () => {
   const { properties, getProperties } = useProperties();
 
   const addProperty = () => {
-    // eslint-disable-next-line no-console
-    console.log("Add property");
-    // onClose();
+    onClose();
   };
 
   const handleAddProperty = () => {
     setTitle("Add Property");
     setOnSubmit(addProperty);
 
-    // eslint-disable-next-line no-console
-    console.log("on open");
     onOpen();
   };
 
@@ -93,6 +95,12 @@ const PropertiesPage = () => {
     setContext("properties");
     setContextMenu([{ label: "Active" }]);
     setContextActions([{ label: "Add Property", onClick: handleAddProperty }]);
+
+    return () => {
+      setContext("");
+      setContextMenu([]);
+      setContextActions([]);
+    };
   }, [setContext, setContextMenu, setContextActions]);
 
   return (

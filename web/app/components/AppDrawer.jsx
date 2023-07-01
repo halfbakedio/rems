@@ -8,13 +8,11 @@ import {
   DrawerHeader,
   DrawerOverlay,
 } from "@chakra-ui/react";
-import PropTypes from "prop-types";
 
 import { useDrawer } from "@/lib/store/hooks";
 
-const AppDrawer = ({ isOpen, onClose }) => {
-  // const { isOpen, initialFocusRef, onClose, onSubmit, title } = useDrawer();
-  const { initialFocusRef, onSubmit, title } = useDrawer();
+const AppDrawer = () => {
+  const { isOpen, onClose, onSubmit, title } = useDrawer();
 
   return (
     <Drawer
@@ -44,16 +42,6 @@ const AppDrawer = ({ isOpen, onClose }) => {
       </DrawerContent>
     </Drawer>
   );
-};
-
-AppDrawer.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired,
-};
-
-AppDrawer.defaultProps = {
-  isOpen: false,
-  onClose: () => {},
 };
 
 export default AppDrawer;
