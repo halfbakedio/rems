@@ -14,22 +14,33 @@
     "start": "next start"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.0.19",
     "@chakra-ui/react": "^2.5.5",
+    "@chakra-ui/stepper": "^2.2.0",
     "@clerk/nextjs": "^4.7.0",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "framer-motion": "^10.11.2",
+    "graphiql": "^2.4.7",
+    "graphql": "^16.6.0",
     "nanoid": "^4.0.2",
     "next": "^13.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-icons": "^4.8.0"
+    "react-icons": "^4.8.0",
+    "zustand": "^4.3.8"
   },
   "devDependencies": {
-    "@types/react": "^18.0.21",
+    "@axe-core/react": "^4.7.3",
+    "@types/graphql": "^14.5.0",
+    "@types/node": "^20.3.1",
+    "@types/react": "^18.2.13",
+    "@types/react-dom": "^18.2.6",
+    "@wixc3/react-board": "^2.2.1",
     "eslint": "^8.37.0",
     "eslint-config-next": "^13.3.0",
     "prettier": "^2.7.1",
+    "prop-types": "^15.8.1",
     "typescript": "^4.8.4"
   }
 }

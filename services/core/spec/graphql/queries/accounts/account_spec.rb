@@ -61,7 +61,6 @@ module Queries
         GQL
       end
 
-
       subject(:result) do
         post "/api/v2/graphql",
           params: { query: query },

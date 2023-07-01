@@ -1,0 +1,2 @@
+drop_table("listings")
+drop_table("open_houses")

@@ -1,0 +1,5 @@
+#!/bin/bash -e
+
+# convenience script for connecting to the rails service
+
+overmind connect core --socket ../../.overmind.sock

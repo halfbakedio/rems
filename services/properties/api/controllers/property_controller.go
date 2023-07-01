@@ -27,25 +27,26 @@ func (p *PropertyController) List(
 
 	properties := models.Properties{
 		&models.Property{
-			ID:        1,
-			UserID:    clerk.User.ID,
-			OrgID:     clerk.OrganizationID(),
-			ImageURI:  nulls.NewString("/tmp/img.png"),
-			CreatedAt: time.Now(),
-			UpdatedAt: time.Now(),
+			ID:             1,
+			UserID:         clerk.User.ID,
+			OrganizationID: clerk.OrganizationID(),
+			ImageURI:       nulls.NewString("/tmp/img.png"),
+			CreatedAt:      time.Now(),
+			UpdatedAt:      time.Now(),
 		},
 		&models.Property{
-			ID:        2,
-			UserID:    clerk.User.ID,
-			OrgID:     clerk.OrganizationID(),
-			ImageURI:  nulls.NewString("/tmp/img.png"),
-			CreatedAt: time.Now(),
-			UpdatedAt: time.Now(),
+			ID:             2,
+			UserID:         clerk.User.ID,
+			OrganizationID: clerk.OrganizationID(),
+			ImageURI:       nulls.NewString("/tmp/img.png"),
+			CreatedAt:      time.Now(),
+			UpdatedAt:      time.Now(),
 		},
 	}
 
-	if err := render.RenderList(w, req, responses.NewPropertiesResponse(properties)); err != nil {
-		render.Render(w, req, ErrRender(err))
+	err := render.RenderList(w, req, responses.NewPropertiesResponse(properties))
+	if err != nil {
+		render.Render(w, req, responses.ErrRender(err))
 		return
 	}
 }

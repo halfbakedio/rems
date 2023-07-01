@@ -6,11 +6,12 @@ import (
 	"strings"
 	"time"
 
+	"github.com/gobuffalo/pop/v6"
 	"github.com/gofrs/uuid"
 	"golang.org/x/crypto/bcrypt"
 )
 
-// Token the token type
+// Token is the model for the token
 type Token struct {
 	ID        int       `db:"id"`
 	UserID    string    `db:"user_id"`
@@ -21,7 +22,7 @@ type Token struct {
 	UpdatedAt time.Time `db:"updated_at"`
 }
 
-// Tokens a list type for tokens
+// Tokens is a slice of Token
 type Tokens []*Token
 
 // NewToken creates a token instance
@@ -45,5 +46,11 @@ func NewToken(userID, category, secret string) Token {
 		Key:       key,
 		Secret:    string(hash),
 		ExpiresAt: now.Add(24 * 14 * time.Hour),
+	}
+}
+
+func (t *Token) ByKey(key string) pop.ScopeFunc {
+	return func(q *pop.Query) *pop.Query {
+		return q.Where("key = ?", key)
 	}
 }

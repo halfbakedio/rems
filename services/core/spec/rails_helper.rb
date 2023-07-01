@@ -8,8 +8,6 @@ require_relative "../config/environment"
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require "rspec/rails"
 
-require "devise"
-
 # require_relative "support/factory_bot"
 
 Dir[Rails.root.join("spec", "support", "**", "*.rb")].each { |f| require f }
@@ -23,9 +21,6 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 
 RSpec.configure do |config|
-  config.include Devise::Test::ControllerHelpers, type: :controller
-  config.include Warden::Test::Helpers
-
   config.include AuthHelpers, type: :request
 
   config.fixture_path = "#{Rails.root}/spec/fixtures"

@@ -1,0 +1,15 @@
+create_table("listings") {
+  t.Column("id", "integer", {primary: true})
+  t.Column("user_id", "string", {})
+  t.Column("organization_id", "string", {})
+  t.Column("property_id", "integer", {})
+  t.ForeignKey("property_id", {"properties": ["id"]}, {"on_delete": "cascade"})
+}
+
+create_table("open_houses") {
+  t.Column("id", "integer", {primary: true})
+  t.Column("user_id", "string", {})
+  t.Column("organization_id", "string", {})
+  t.Column("listing_id", "integer", {})
+  t.ForeignKey("listing_id", {"listings": ["id"]}, {"on_delete": "cascade"})
+}

@@ -10,26 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_31_050751) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_11_193828) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "accounts", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "domain"
-    t.string "subdomain"
-  end
-
-  create_table "assignments", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "role_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["role_id"], name: "index_assignments_on_role_id"
-    t.index ["user_id"], name: "index_assignments_on_user_id"
-  end
 
   create_table "contacts", force: :cascade do |t|
     t.string "first_name"
@@ -39,77 +22,48 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_31_050751) do
     t.boolean "lead"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "user_id", limit: 64
+    t.string "organization_id", limit: 64
   end
 
   create_table "listings", force: :cascade do |t|
-    t.bigint "account_id", null: false
     t.bigint "property_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "agent_id"
-    t.index ["account_id"], name: "index_listings_on_account_id"
+    t.string "user_id", limit: 64
+    t.string "organization_id", limit: 64
     t.index ["property_id"], name: "index_listings_on_property_id"
   end
 
   create_table "open_houses", force: :cascade do |t|
-    t.bigint "account_id", null: false
     t.bigint "listing_id", null: false
     t.datetime "start_at"
     t.datetime "end_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["account_id"], name: "index_open_houses_on_account_id"
+    t.string "user_id", limit: 64
+    t.string "organization_id", limit: 64
     t.index ["listing_id"], name: "index_open_houses_on_listing_id"
   end
 
   create_table "properties", force: :cascade do |t|
-    t.bigint "account_id", null: false
     t.string "address"
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["account_id"], name: "index_properties_on_account_id"
+    t.string "user_id", limit: 64
+    t.string "organization_id", limit: 64
   end
 
-  create_table "roles", force: :cascade do |t|
-    t.string "name"
+  create_table "tokens", force: :cascade do |t|
+    t.string "user_id", null: false
+    t.string "uuid", null: false
+    t.string "token_hash", null: false
+    t.datetime "expires_at", default: "2023-07-01 19:08:35"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string "current_sign_in_ip"
-    t.string "last_sign_in_ip"
-    t.string "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.string "unconfirmed_email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "username"
-    t.string "image"
-    t.bigint "account_id", null: false
-    t.index ["account_id"], name: "index_users_on_account_id"
-    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["username"], name: "index_users_on_username", unique: true
-  end
-
-  add_foreign_key "assignments", "roles"
-  add_foreign_key "assignments", "users"
-  add_foreign_key "listings", "accounts"
   add_foreign_key "listings", "properties"
-  add_foreign_key "open_houses", "accounts"
   add_foreign_key "open_houses", "listings"
-  add_foreign_key "properties", "accounts"
-  add_foreign_key "users", "accounts"
 end

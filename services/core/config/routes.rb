@@ -1,22 +1,15 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  scope :api, defaults: { format: :json } do
-    scope :v1 do
-      devise_for :users,
-        controllers: { sessions: :sessions },
-        path_names: { sign_in: :login }
-    end
+  if Rails.env.development?
+    mount GraphiQL::Rails::Engine,
+      at: "/api/v2/graphiql",
+      graphql_path: "/api/v2/graphql"
   end
 
   concern :api_base do
-    resource :user, only: %i[show update]
-    resources :profiles, param: :username, only: [:show]
-    resources :agents
-    resources :contacts
-    # resources :listings
-    resources :open_houses, only: %i[show index]
-    # resources :properties
+    resources :open_houses, path: "/open-houses", only: %i[show index]
+    resources :properties, only: %i[show index]
   end
 
   namespace :api do

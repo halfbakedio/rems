@@ -17,7 +17,7 @@ import (
 )
 
 func main() {
-	apiKey := os.Getenv("CLERK_SECRET_KEY")
+	apiKey := os.Getenv("CLERK_API_KEY")
 
 	client, err := clerk.NewClient(apiKey)
 	if err != nil {
@@ -73,7 +73,7 @@ func ClerkContext(next http.Handler) http.Handler {
 		var client clerk.Client
 		var err error
 
-		apiKey := os.Getenv("CLERK_SECRET_KEY")
+		apiKey := os.Getenv("CLERK_API_KEY")
 
 		if client, err = clerk.NewClient(apiKey); err != nil {
 			w.WriteHeader(http.StatusUnauthorized)

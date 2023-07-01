@@ -64,13 +64,13 @@ module Types
     end
 
     def users(role_id: nil)
-      if role_id
-        policy_scope(User).where(
-          id: Assignment.where(role_id: role_id).select(:user_id)
-        )
-      else
-        policy_scope(User)
-      end
+      # if role_id
+      #   policy_scope(User).where(
+      #     id: Assignment.where(role_id: role_id).select(:user_id)
+      #   )
+      # else
+      policy_scope(User)
+      # end
     end
 
     def account(id:)
