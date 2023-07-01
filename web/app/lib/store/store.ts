@@ -2,11 +2,13 @@ import { createContext, useContext } from "react";
 import { createStore, useStore as useZustandStore } from "zustand";
 
 import { createApplicationSlice, IApplicationSlice } from "./slices/application";
+import { createDrawerSlice, IDrawerSlice } from "./slices/drawer";
 import { createPropertySlice, IPropertySlice } from "./slices/property";
 import { createThemeSlice, IThemeSlice } from "./slices/theme";
 
 interface IStore extends
   IApplicationSlice,
+  IDrawerSlice,
   IPropertySlice,
   IThemeSlice
 {};
@@ -37,6 +39,7 @@ export const initializeStore = (
       ...getDefaultInitialState(),
       ...preloadedState,
       ...createApplicationSlice(set, get, api),
+      ...createDrawerSlice(set, get, api),
       ...createPropertySlice(set, get, api),
       ...createThemeSlice(set, get, api),
     })

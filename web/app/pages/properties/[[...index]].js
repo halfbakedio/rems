@@ -6,23 +6,13 @@ import {
   IconButton,
   Spacer,
   Text,
-  useDisclosure,
   VStack,
 } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { FiEdit3, FiTrash2 } from "react-icons/fi";
 
 import Layout from "@/components/layouts/App";
-import AppDrawer from "@/components/AppDrawer";
-import { useStore } from "@/lib/store";
-import { useApplication } from "@/lib/store/hooks";
-
-const useProperties = () => {
-  return useStore((store) => ({
-    properties: store.properties,
-    getProperties: store.getProperties,
-  }));
-};
+import { useApplication, useDrawer, useProperties } from "@/lib/store/hooks";
 
 const PropertyRow = ({ property }) => (
   <Box w="100%" p={2}>
@@ -70,11 +60,26 @@ const PropertyList = ({ properties }) => (
 );
 
 const PropertiesPage = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
   const { session } = useSession();
 
   const { setContext, setContextMenu, setContextActions } = useApplication();
+  const { onClose, onOpen, setOnSubmit, setTitle } = useDrawer();
   const { properties, getProperties } = useProperties();
+
+  const addProperty = () => {
+    // eslint-disable-next-line no-console
+    console.log("Add property");
+    // onClose();
+  };
+
+  const handleAddProperty = () => {
+    setTitle("Add Property");
+    setOnSubmit(addProperty);
+
+    // eslint-disable-next-line no-console
+    console.log("on open");
+    onOpen();
+  };
 
   useEffect(() => {
     (async () => {
@@ -86,17 +91,14 @@ const PropertiesPage = () => {
 
   useEffect(() => {
     setContext("properties");
-    setContextMenu([]);
-    setContextActions([]);
+    setContextMenu([{ label: "Active" }]);
+    setContextActions([{ label: "Add Property", onClick: handleAddProperty }]);
   }, [setContext, setContextMenu, setContextActions]);
 
   return (
-    <>
-      <AppDrawer isOpen={isOpen} onClose={onClose} onOpen={onOpen} />
-      <Box>
-        <PropertyList properties={properties} />
-      </Box>
-    </>
+    <Box>
+      <PropertyList properties={properties} />
+    </Box>
   );
 };
 

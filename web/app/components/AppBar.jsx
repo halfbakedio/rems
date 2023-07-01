@@ -1,4 +1,7 @@
 import { Box, Button, Flex } from "@chakra-ui/react";
+import { nanoid } from "nanoid";
+
+import { useApplication } from "@/lib/store/hooks";
 
 const AppBarButton = ({ label }) => (
   <Button
@@ -15,28 +18,34 @@ const AppBarButton = ({ label }) => (
 );
 
 const AppBar = () => {
+  const { contextMenu } = useApplication();
+
   return (
-    <Box
-      id="app-bar"
-      bg="green.800"
-      color="gray.100"
-      borderRight="2px"
-      borderRightColor="green.900"
-      w="192px"
-      left={0}
-      top={0}
-      minH="100vh"
-      position="fixed"
-      ml="64px"
-      pt="64px"
-      zIndex={2}
-    >
-      <Flex direction="column">
-        <AppBarButton label="Box 1" />
-        <AppBarButton label="Box 2" />
-        <AppBarButton label="Box 3" />
-      </Flex>
-    </Box>
+    <>
+      {contextMenu && contextMenu.length > 0 && (
+        <Box
+          id="app-bar"
+          bg="green.800"
+          color="gray.100"
+          borderRight="2px"
+          borderRightColor="green.900"
+          w="192px"
+          left={0}
+          top={0}
+          minH="100vh"
+          position="fixed"
+          ml="64px"
+          pt="64px"
+          zIndex={2}
+        >
+          <Flex direction="column">
+            {contextMenu.map((item) => (
+              <AppBarButton key={nanoid()} label={item.label} />
+            ))}
+          </Flex>
+        </Box>
+      )}
+    </>
   );
 };
 

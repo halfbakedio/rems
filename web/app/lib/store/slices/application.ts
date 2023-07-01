@@ -2,12 +2,12 @@ import { StateCreator } from "zustand";
 
 export type ContextMenuItem = {
   label: string;
-  callback: () => void;
+  onClick: () => void;
 };
 
 export type ContextActionItem = {
   label: string;
-  callback: () => void;
+  onClick: () => void;
 };
 
 export interface IApplicationSlice {

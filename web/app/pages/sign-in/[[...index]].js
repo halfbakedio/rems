@@ -6,7 +6,7 @@ const SignInPage = () => (
     id="sign-in-page"
     minH="100vh"
     minW="100%"
-    bgGradient="linear(to-r, gray.300, white, green.200)"
+    bgGradient="linear(to-r, blue.500, blue.300, blue.500)"
   >
     <Center h="100vh">
       <SignIn path="/sign-in" routing="path" signUpUrl="/sign-up" />

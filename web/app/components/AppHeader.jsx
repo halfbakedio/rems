@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import {
   Button,
@@ -14,20 +13,19 @@ import {
   MenuList,
   Spacer,
 } from "@chakra-ui/react";
-import { FiChevronDown } from "react-icons/fi";
+import { nanoid } from "nanoid";
+import Link from "next/link";
 import { useEffect, useState } from "react";
+import { FiChevronDown } from "react-icons/fi";
 
 import { useApplication } from "@/lib/store/hooks";
 
 const capitalize = (str) => str && str.charAt(0).toUpperCase() + str.slice(1);
 
-// TODO:
-//  - add global context menu
-//  - read current context from state and display context menu
 const AppHeader = () => {
   const [title, setTitle] = useState("");
 
-  const { context } = useApplication();
+  const { context, contextActions } = useApplication();
 
   useEffect(() => {
     setTitle(capitalize(context));
@@ -71,10 +69,18 @@ const AppHeader = () => {
                 <MenuItem>Global Action 1</MenuItem>
                 <MenuItem>Global Action 2</MenuItem>
               </MenuGroup>
-              <MenuDivider />
-              <MenuGroup title="From Context">
-                <MenuItem>Add New</MenuItem>
-              </MenuGroup>
+              { contextActions && contextActions.length > 0 && (
+                <>
+                  <MenuDivider />
+                  <MenuGroup title="From Context">
+                    {contextActions.map((action) => (
+                      <MenuItem key={nanoid()} onClick={action.onClick}>
+                        {action.label}
+                      </MenuItem>
+                    ))}
+                  </MenuGroup>
+                </>
+              )}
             </MenuList>
           </Menu>
         </SignedIn>
