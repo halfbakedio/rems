@@ -3,6 +3,7 @@ import { ReactNode, RefObject } from "react";
 
 export interface IDrawerSlice {
   children: ReactNode;
+  formId: string;
   initialFocusRef: RefObject<HTMLElement>;
   isOpen: boolean;
   onClose: () => void;
@@ -11,6 +12,7 @@ export interface IDrawerSlice {
   title: string;
 
   setChildren: (children: ReactNode) => void;
+  setFormId: (formId: string) => void;
   setInitialFocusRef: (ref: RefObject<HTMLElement>) => void;
   setIsOpen: (isOpen: boolean) => void;
   setOnClose: (onClose: () => void) => void;
@@ -21,6 +23,7 @@ export interface IDrawerSlice {
 
 export const createDrawerSlice: StateCreator<IDrawerSlice> = (set) => ({
   children: undefined,
+  formId: "drawer-form",
   initialFocusRef: undefined,
   isOpen: false,
   onClose: () => set({ isOpen: false }),
@@ -29,6 +32,7 @@ export const createDrawerSlice: StateCreator<IDrawerSlice> = (set) => ({
   title: undefined,
 
   setChildren: (children) => set({ children }),
+  setFormId: (formId) => set({ formId }),
   setInitialFocusRef: (ref) => set({ initialFocusRef: ref }),
   setIsOpen: (isOpen) => set({ isOpen }),
   setOnClose: (onClose) => set({ onClose }),

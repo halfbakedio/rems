@@ -48,5 +48,7 @@ module Core
       g.routing_specs false
       g.request_specs false
     end
+
+    config.autoload_paths << "#{Rails.root}/lib"
   end
 end

@@ -22,7 +22,7 @@ deploy/api:
 deploy/app:
   summary: deploy the web app
   command: |
-    cd web/app
+    cd app
     flyctl deploy
 
 deploy/admin:

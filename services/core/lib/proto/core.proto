@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package rpc;
+
+service Core {
+  // Demonstrates a request response call
+  rpc GetProperty(GetPropertyRequest) returns (GetPropertyResponse) {}
+}
+
+message Property {
+  uint32 id = 1;
+  string name = 2;
+  float price = 3;
+}
+
+message GetPropertyRequest {
+  uint32 id = 1;
+}
+
+message GetPropertyResponse {
+  Property property = 1;
+}

@@ -12,14 +12,22 @@ import {
 import { useDrawer } from "@/lib/store/hooks";
 
 const AppDrawer = () => {
-  const { isOpen, onClose, onSubmit, title } = useDrawer();
+  const {
+    children,
+    formId,
+    initialFocusRef,
+    isOpen,
+    onClose,
+    title,
+  } = useDrawer();
 
   return (
     <Drawer
       isOpen={isOpen}
       placement="right"
-      // initialFocusRef={initialFocusRef}
+      initialFocusRef={initialFocusRef}
       onClose={onClose}
+      size={["xs", "sm", "md"]}
     >
       <DrawerOverlay />
       <DrawerContent>
@@ -28,14 +36,13 @@ const AppDrawer = () => {
           {title}
         </DrawerHeader>
         <DrawerBody>
-          <p>Drawer contents...</p>
-          {/* {children} */}
+          {children}
         </DrawerBody>
         <DrawerFooter borderTopWidth="1px">
           <Button variant="outline" mr={3} onClick={onClose}>
             Cancel
           </Button>
-          <Button colorScheme="blue" onClick={onSubmit}>
+          <Button colorScheme="blue" type="submit" form={formId}>
             Submit
           </Button>
         </DrawerFooter>

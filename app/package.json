@@ -20,6 +20,7 @@
     "@clerk/nextjs": "^4.7.0",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "formik": "^2.4.2",
     "framer-motion": "^10.11.2",
     "nanoid": "^4.0.2",
     "next": "^13.3.0",

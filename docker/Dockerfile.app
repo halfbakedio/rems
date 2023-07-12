@@ -8,7 +8,7 @@ WORKDIR /app
 
 ENV NODE_ENV production
 
-COPY ./web/app/ .
+COPY ./app/ .
 COPY ./services/core/config/schema.json .
 
 RUN yarn install --frozen-lockfile

@@ -1,4 +1,5 @@
-app: sh -c "cd ./web/app && yarn dev"
+app: sh -c "cd ./app && yarn dev"
 core: sh -c "cd ./services/core && bin/rails s"
+core_grpc: sh -c "cd ./services/core && bundle exec gruf"
 admin: sh -c "cd ./services/admin/ && exec air -c .air.toml"
 properties: sh -c "cd ./services/properties/ && exec air -c .air.toml"
