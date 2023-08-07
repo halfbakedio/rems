@@ -36,7 +36,7 @@ const AdminPage = () => {
             md: useColorModeValue("gray.100", "gray.900"),
           }}
         >
-          <Text fontSize="xl" fontFamily="monospace" fontWeight="bold">
+          <Text fontSize="xl" fontFamily="monospace" fontWeight="bold" noOfLines={1}>
             {breadbrumbs}
           </Text>
         </Flex>

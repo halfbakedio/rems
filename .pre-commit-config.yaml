@@ -4,7 +4,11 @@ repos:
     hooks:
       - id: check-yaml
       - id: end-of-file-fixer
-        exclude: "services/core/config/credentials.yml.enc"
+        exclude: |
+          (?x)(
+            ^services/core/config/credentials.yml.enc|
+            ^mobile/
+          )
       - id: trailing-whitespace
 # - repo: https://github.com/mattlqx/pre-commit-ruby
 #   rev: v1.3.5
